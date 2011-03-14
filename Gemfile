@@ -26,7 +26,7 @@ gem 'dm-observer',          DM_VERSION
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 
 # CSS
-gem 'compass'
+gem 'compass', ">= 0.10.6"
 
 # Auth
 gem 'devise'
