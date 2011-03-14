@@ -1,31 +1,55 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.5'
+RAILS_VERSION = '~> 3.0.4'
+DM_VERSION    = '~> 1.1.0.rc3'
+RSPEC_VERSION = '~> 2.5.0'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+# Rails
+gem 'activesupport',      RAILS_VERSION, :require => 'active_support'
+gem 'actionpack',         RAILS_VERSION, :require => 'action_pack'
+gem 'actionmailer',       RAILS_VERSION, :require => 'action_mailer'
+gem 'railties',           RAILS_VERSION, :require => 'rails'
 
-gem 'sqlite3'
+# DataMapper
+gem 'dm-rails',             DM_VERSION
+gem 'dm-sqlite-adapter',    DM_VERSION
+# gem 'dm-migrations',        DM_VERSION
+# gem 'dm-types',             DM_VERSION
+# gem 'dm-validations',       DM_VERSION
+# gem 'dm-constraints',       DM_VERSION
+# gem 'dm-transactions',      DM_VERSION
+# gem 'dm-aggregates',        DM_VERSION
+# gem 'dm-timestamps',        DM_VERSION
+# gem 'dm-observer',          DM_VERSION
 
-# Use unicorn as the web server
-# gem 'unicorn'
+# gem 'sqlite3'
+# gem 'sqlite3-ruby', :require => 'sqlite3'
 
-# Deploy with Capistrano
-# gem 'capistrano'
+# CSS
+gem 'compass'
 
-# To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
-# gem 'ruby-debug'
-# gem 'ruby-debug19', :require => 'ruby-debug'
+# Auth
+gem 'devise'
 
 # Bundle the extra gems:
 # gem 'bj'
 # gem 'nokogiri'
-# gem 'sqlite3-ruby', :require => 'sqlite3'
-# gem 'aws-s3', :require => 'aws/s3'
 
-# Bundle gems for the local environment. Make sure to
-# put test-only gems in this group so their generators
-# and rake tasks are available in development mode:
-# group :development, :test do
-#   gem 'webrat'
-# end
+group :development, :test do
+  # Testing
+  gem 'webrat'
+  gem 'rspec-rails', RSPEC_VERSION
+  gem 'cucumber'
+  gem 'cucumber-rails'
+  # Dev Webserver
+  gem 'unicorn'
+  # Debugger
+  gem 'ruby-debug'
+  # Deployment
+  gem 'capistrano'
+  # Metrics
+  #   rails g rails_metrics Metric
+  #   rake db:automigrate
+  gem 'rails_metrics', '~> 0.1', :git => 'git://github.com/engineyard/rails_metrics'
+  
+end
