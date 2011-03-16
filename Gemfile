@@ -21,6 +21,7 @@ gem 'dm-transactions',      DM_VERSION
 gem 'dm-aggregates',        DM_VERSION
 gem 'dm-timestamps',        DM_VERSION
 gem 'dm-observer',          DM_VERSION
+gem 'dm-timestamps',        DM_VERSION
 
 # gem 'sqlite3'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
@@ -42,7 +43,7 @@ group :development, :test do
   gem 'cucumber'
   gem 'cucumber-rails'
   # Dev Webserver
-  gem 'unicorn'
+  gem 'passenger'
   # Debugger
   gem 'ruby-debug'
   # Deployment
@@ -50,6 +51,5 @@ group :development, :test do
   # Metrics
   #   rails g rails_metrics Metric
   #   rake db:automigrate
-  gem 'rails_metrics', '~> 0.1', :git => 'git://github.com/engineyard/rails_metrics'
-  
+  gem 'rails_metrics', '~> 0.1', :git => 'git://github.com/engineyard/rails_metrics'rvm 
 end
