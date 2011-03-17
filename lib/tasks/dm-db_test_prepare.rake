@@ -1,7 +1,7 @@
 namespace :db do
   namespace :test do
     task :prepare do
-      # do the db preparation here for DataMapper
+      DataMapper.auto_migrate!
     end
   end
 end

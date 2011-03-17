@@ -44,7 +44,6 @@ group :development, :test do
   gem 'rspec-rails',        RSPEC_VERSION
   gem 'cucumber'
   gem 'cucumber-rails'
-  gem 'database_cleaner'
   # Dev Webserver
   gem 'passenger'
   # Debugger
