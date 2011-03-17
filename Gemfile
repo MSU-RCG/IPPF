@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 RAILS_VERSION = '~> 3.0.4'
-DM_VERSION    = '~> 1.1.0.rc3'
+DM_VERSION    = '~> 1.0.0'
 RSPEC_VERSION = '~> 2.5.0'
 
 # Rails
@@ -31,6 +31,7 @@ gem 'compass', ">= 0.10.6"
 
 # Auth
 gem 'devise'
+gem 'dm-devise'
 
 # Bundle the extra gems:
 # gem 'bj'
@@ -39,7 +40,8 @@ gem 'devise'
 group :development, :test do
   # Testing
   gem 'webrat'
-  gem 'rspec-rails', RSPEC_VERSION
+  gem 'rspec',              RSPEC_VERSION
+  gem 'rspec-rails',        RSPEC_VERSION
   gem 'cucumber'
   gem 'cucumber-rails'
   # Dev Webserver
