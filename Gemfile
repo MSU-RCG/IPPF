@@ -51,5 +51,5 @@ group :development, :test do
   # Metrics
   #   rails g rails_metrics Metric
   #   rake db:automigrate
-  gem 'rails_metrics', '~> 0.1', :git => 'git://github.com/engineyard/rails_metrics'rvm 
+  gem 'rails_metrics', '~> 0.1', :git => 'git://github.com/engineyard/rails_metrics'
 end
