@@ -18,9 +18,12 @@ Feature: User Authentication
       | testing@man.net | secretpass |
       | foo@bar.com     | fr33z3     |
 
-  # Scenario: Willing to edit my account
-    # Given I am a new, authenticated user 
-    # When I want to edit my account
-    # Then I should see the account initialization form
-    # And I should see "Your account has not been initialized yet. Do it now!"
-    # And more view checking stuff
+  Scenario: Able to edit my account
+    Given I am a new, authenticated user 
+    When I go to the user edit page
+    Then I should see my account information form
+    And I should not see my role
+    And I update my account information
+    Then I should see "Your account has been updated."
+    And I should be at the home page
+

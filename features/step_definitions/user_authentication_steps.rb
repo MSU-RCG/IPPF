@@ -21,6 +21,15 @@ Given /^I am a new, authenticated user$/ do
   And %{I press "Sign in"}
 end
 
+Given /^I am an authenticated ([-\w]+) user$/ do |role|
+  case role
+  when 'admin'
+    Given %{I am a new, authenticated user}
+  when 'non-admin'
+    Given %{I am a new, authenticated user}
+  end
+end
+
 Then /^I am redirected to (.+)$/ do |url|
   assert [301, 302].include?(@integration_session.status), "Expected status to be 301 or 302, got #{@integration_session.status}"
   location = @integration_session.headers["Location"]
