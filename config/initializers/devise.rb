@@ -35,6 +35,13 @@ Devise.setup do |config|
   # config.http_authentication_realm = "Application"
 
   # ==> Configuration for :database_authenticatable
+  if File.exists?(File.join(Rails.root, 'config', 'secrets.rb'))
+    require File.join(Rails.root, 'config', 'secrets')
+  else
+    STDERR.puts "*** The secrets file does not exist, please run `rake generate:secrets` ***"
+    exit(1)
+  end
+  
   # For bcrypt, this is the cost for hashing the password and defaults to 10. If
   # using other encryptors, it sets how many times you want the password re-encrypted.
   config.stretches = Rails.env.test? ? 1 : 10
@@ -46,7 +53,7 @@ Devise.setup do |config|
   config.encryptor = :bcrypt
 
   # Setup a pepper to generate the encrypted password.
-  config.pepper = "f0b2e5f44a603329ff14884fc0aa5d4d3f22dc5d5cc8bb3b254ddb473cf6c16f41edef664bcba28bb80762ec2f7321ed0827f69ab1ab7e959710a83062539a7c"
+  config.pepper = DEVISE_PEPPER
 
   # ==> Configuration for :confirmable
   # The time you want to give your user to confirm his account. During this time

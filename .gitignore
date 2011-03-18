@@ -5,3 +5,4 @@ tmp/
 config/database.yml
 .rvmrc
 public/stylesheets/compiled/*
+config/secrets.rb
