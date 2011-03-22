@@ -1,8 +1,11 @@
 source 'http://rubygems.org'
 
-RAILS_VERSION = '~> 3.0.4'
-DM_VERSION    = '~> 1.0.0'
-RSPEC_VERSION = '~> 2.5.0'
+# Explicit Versions
+RAILS_VERSION     = '~> 3.0.4'
+DM_VERSION        = '~> 1.1.0'
+RSPEC_VERSION     = '~> 2.5.0'
+CUKER_VERSION     = '~> 0.3.2'
+DM_DEVISE_VERSION = '~>1.2.0.rc'
 
 # Rails
 gem 'activesupport',      RAILS_VERSION, :require => 'active_support'
@@ -31,7 +34,7 @@ gem 'compass', ">= 0.10.6"
 
 # Auth
 gem 'devise'
-gem 'dm-devise'
+gem 'dm-devise',            DM_DEVISE_VERSION
 
 # Bundle the extra gems:
 # gem 'bj'
@@ -43,7 +46,7 @@ group :development, :test do
   gem 'rspec',              RSPEC_VERSION
   gem 'rspec-rails',        RSPEC_VERSION
   gem 'cucumber'
-  gem 'cucumber-rails'
+  gem 'cucumber-rails',     CUKER_VERSION
   # Dev Webserver
   gem 'passenger'
   # Debugger
@@ -54,4 +57,5 @@ group :development, :test do
   #   rails g rails_metrics Metric
   #   rake db:automigrate
   gem 'rails_metrics', '~> 0.1', :git => 'git://github.com/engineyard/rails_metrics'
+  # Misc
 end
