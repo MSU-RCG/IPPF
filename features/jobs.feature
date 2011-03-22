@@ -62,14 +62,16 @@ Feature: Jobs Interface
     And completed jobs will be hidden by default
     And I should see a link to show all jobs
   
-  Scenario: Marking a job as completed
-    Given I am an authenticated admin user
-    When I press the Completed button for the "Example Job"
-    Then I should see a confirmation request
-    And I press "ok"
-    Then the "Example Job" will have a status of "completed"
-    And an email will be sent to the job creator
-    And an email will be sent to the admin
+  Scenario Outline: Downloading a completed job
+    Given I am an authenticated <role> user
+    And the "Example Job" is completed
+    When I view the "Example Job"
+    Then I should see a "Download" link for the computed job file
+    
+    Examples:
+      | role      |
+      | admin     |
+      | non-admin |
   
   Scenario: Able to submit jobs like a non-admin user
     Given I am an authenticated admin user
