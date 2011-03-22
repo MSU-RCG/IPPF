@@ -29,6 +29,10 @@ gem 'dm-timestamps',        DM_VERSION
 # gem 'sqlite3'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 
+# Templates
+gem 'haml-rails'
+gem 'hpricot'
+
 # CSS
 gem 'compass', ">= 0.10.6"
 
@@ -47,6 +51,7 @@ group :development, :test do
   gem 'rspec-rails',        RSPEC_VERSION
   gem 'cucumber'
   gem 'cucumber-rails',     CUKER_VERSION
+  gem 'autotest'
   # Dev Webserver
   gem 'passenger'
   # Debugger
