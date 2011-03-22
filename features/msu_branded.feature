@@ -8,6 +8,7 @@ Feature: MSU Branded Application
     Given I am not authenticated
     When I go to the new user <type> page
     Then I should see "<!--Web Template3_widev1.01-->"
+
     Examples:
       | type         |  
       | registration |

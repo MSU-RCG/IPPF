@@ -193,3 +193,15 @@ end
 Then /^jobs created by "([^"]*)" will be deleted$/ do |arg1|
   pending # express the regexp above with the code you wish you had
 end
+
+Then /^the "([^"]*)" will be updated with a "([^"]*)" status$/ do |arg1, arg2|
+  pending # express the regexp above with the code you wish you had
+end
+
+Given /^the "([^"]*)" is completed$/ do |arg1|
+  pending # express the regexp above with the code you wish you had
+end
+
+When /^I view the "([^"]*)"$/ do |arg1|
+  pending # express the regexp above with the code you wish you had
+end
