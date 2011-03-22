@@ -38,5 +38,11 @@ module Ippf
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+    
+    # Default template engine for Rails Generators.  Use HAML instead of ERB
+    config.generators do |g|
+      g.template_engine :haml
+    end
+    
   end
 end
