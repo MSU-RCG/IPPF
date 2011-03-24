@@ -7,12 +7,12 @@ Feature: Jobs Interface
   Scenario: The Jobs interface requires logged in user
     Given I am not authenticated
     When I go to the home page
-    Then I am redirected to the user registration page
+    Then I should be on the user registration page
   
   Scenario: The Jobs interface should be the home page
     Given I am an authenticated non-admin user
     When I go to the home page
-    Then I should be at the jobs page
+    Then I should see "Jobs"
   
   Scenario: Viewing Jobs as a non-admin
     Given I am an authenticated non-admin user

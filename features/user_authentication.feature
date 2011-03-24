@@ -30,7 +30,7 @@ Feature: User Authentication
 
   Scenario: Able to edit my account
     Given I am a new, authenticated user 
-    When I go to the user edit page
+    When I go to the edit user registration page
     Then I should see my account information form
     And I should not see my role
     And I update my account information
