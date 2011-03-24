@@ -1,3 +1,7 @@
+AfterConfiguration do
+  DataMapper.auto_migrate!
+end
+
 Before do
   repository(:default) do |repository|
     transaction = DataMapper::Transaction.new(repository)
