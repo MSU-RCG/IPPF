@@ -8,6 +8,7 @@ class User
 
 
   property :id, Serial
-
+  
+  has n, :jobs
 
 end
