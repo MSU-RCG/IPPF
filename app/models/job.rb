@@ -1,14 +1,14 @@
 class Job
-
   include DataMapper::Resource
 
-  property :id, Serial
+  # Properties
+  property :id,           Serial
+  property :name,         String,                   :required => true
+  property :job_type,     Enum[:shape, :transect]
+  property :coordinates,  String,                   :required => true
+  property :status,       Enum[:pending, :complete]
+  property :notes,        Text
 
-  property :name, String
-  property :job_type, String
-  property :user_id, Integer
-  property :coordinates, String
-  property :status, String
-  property :notes, Text
-
+  # Associations
+  belongs_to :user
 end
