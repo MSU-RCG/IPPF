@@ -4,12 +4,14 @@ Feature: User Management
   As an administrator
   I want a user management interface
 
+  @wip
   Scenario: Viewing the User Management Interface
     Given I am an authenticated admin user
     When I go to the users page
     Then I should see the users list
     And links to create, edit and delete users
 
+  @wip
   Scenario: Creating a new user
     Given I am an authenticated admin user
     When I go to the new user page

@@ -1,13 +1,18 @@
-Given /^I am authenticated$/ do
-  pending # express the regexp above with the code you wish you had
-end
-
-Then /^I should be at the jobs page$/ do
-  pending # express the regexp above with the code you wish you had
+Given /^I have( no)? submitted jobs$/ do |bool|
+  if bool
+    Given %{I am on the jobs page} 
+    And %{I fill in "name" with "Job1"}
+    And %{I select "shape" from "job_type"}
+    And %{I fill in coordinates with "123 45 67"}
+    And %{I press "Submit Job"}
+  end
 end
 
 Then /^I should see a list of my submitted jobs$/ do
-  pending # express the regexp above with the code you wish you had
+  current_user.jobs.should_not be_empty
+  current_user.jobs.each do |job|
+    response.should contain(job.name)
+  end
 end
 
 Then /^jobs will be sorted by status$/ do

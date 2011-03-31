@@ -7,7 +7,7 @@ Feature: Jobs Interface
   Scenario: The Jobs interface requires logged in user
     Given I am not authenticated
     When I go to the home page
-    Then I should be on the user registration page
+    Then I should be on the log in page
   
   Scenario: The Jobs interface should be the home page
     Given I am an authenticated non-admin user
@@ -16,9 +16,16 @@ Feature: Jobs Interface
   
   Scenario: Viewing Jobs as a non-admin
     Given I am an authenticated non-admin user
+    And I have submitted jobs
     When I go to the jobs page
     Then I should see a list of my submitted jobs
     And jobs will be sorted by status
+    And I should see a button to submit a new job
+
+  Scenario: Viewing Jobs as a non-admin
+    Given I am an authenticated non-admin user
+    When I go to the jobs page
+    Then I should see "You have no jobs"
     And I should see a button to submit a new job
   
   Scenario: Creating a new Job
@@ -77,8 +84,3 @@ Feature: Jobs Interface
     Given I am an authenticated admin user
     When I go to the jobs page
     Then I should see a button to submit a new job
-  
-
-    
-  
-  

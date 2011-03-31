@@ -11,7 +11,7 @@ Feature: User Authentication
     And I fill in "user_password" with "<password>"
     And I fill in "user_password_confirmation" with "<password>"
     And I press "Sign up"
-    Then I should see "logged in as <email>" 
+    Then I should see "You have signed up successfully. A confirmation was sent to your e-mail." 
 
     Examples:
       | email           | password   |
@@ -26,7 +26,7 @@ Feature: User Authentication
     And I fill in "user_password" with "secretpass"
     And I fill in "user_password_confirmation" with "secretpass"
     And I press "Log In"
-    Then I should see "logged in as example@example.com" 
+    Then I should see "Signed in successfully." 
 
   Scenario: Able to edit my account
     Given I am a new, authenticated user 

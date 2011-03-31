@@ -7,7 +7,7 @@ Feature: MSU Branded Application
   Scenario Outline: Viewing a public page
     Given I am not authenticated
     When I go to the user <type> page
-    Then the response should contain "<!--Web Template3_widev1.01-->"
+    Then the document should contain "<!--Web Template3_widev1.01-->"
 
     Examples:
       | type         |  
@@ -17,7 +17,7 @@ Feature: MSU Branded Application
   Scenario Outline: Viewing a private page
     Given I am an authenticated <role> user
     When I go to the jobs page
-    Then the response should contain "<!--Web Template3_0v1.01-->"
+    Then the document should contain "<!--Web Template3_0v1.01-->"
     
     Examples:
       | role      |

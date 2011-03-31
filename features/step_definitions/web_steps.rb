@@ -279,3 +279,7 @@ end
 Then /^show me the page$/ do
   save_and_open_page
 end
+
+Then /^the document should contain "([^"]*)"$/ do |string|
+  response_body.match(string).should_not == 'Not Found'
+end
