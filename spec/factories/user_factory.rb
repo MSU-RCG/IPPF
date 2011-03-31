@@ -8,9 +8,6 @@ Factory.define :user do |f|
   f.password_confirmation "password"
 end
 
-Factory.define :user_with_jobs do |f|
-  f.email { Factory.next(:email) }
-  f.password "password"
-  f.password_confirmation "password"
+Factory.define :user_with_jobs, :parent => :user do |f|
   f.jobs [Factory(:job)]
 end

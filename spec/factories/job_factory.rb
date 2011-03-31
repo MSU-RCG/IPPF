@@ -5,4 +5,7 @@ Factory.define :job do |f|
   f.status      'pending'
   f.notes       "Here are some notes for the Job"
   f.association :user
+  f.after_create { |f| Factory(:job_file, :job => f) }
 end
+
+

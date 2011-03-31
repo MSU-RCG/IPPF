@@ -1,6 +1,9 @@
 class Job
   include DataMapper::Resource
 
+  # Constants
+  JOB_TYPES = [:shape, :transect]
+
   # Properties
   property :id,           Serial
   property :name,         String,                   :required => true
@@ -8,7 +11,20 @@ class Job
   property :coordinates,  String,                   :required => true
   property :status,       Enum[:pending, :complete]
   property :notes,        Text
+  property :created_at,   DateTime
+  property :created_on,   Date
+  property :updated_at,   DateTime
+  property :updated_on,   Date
 
   # Associations
-  belongs_to :user
+  belongs_to  :user
+  has n,      :job_files
+  
+  # Custom Validations
+  validates_presence_of :job_files, :if => lambda { |j| j.job_files.count > 0 }
+  
+  # Accessor for the valid job_types
+  def self.job_types
+    Job.properties.select{|p| p.name == :job_type}.first.options[:flags]
+  end
 end

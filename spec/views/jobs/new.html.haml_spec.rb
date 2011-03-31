@@ -18,10 +18,8 @@ describe "jobs/new.html.haml" do
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     assert_select "form", :action => jobs_path, :method => "post" do
       assert_select "input#job_name", :name => "job[name]"
-      assert_select "input#job_job_type", :name => "job[job_type]"
-      assert_select "input#job_user_id", :name => "job[user_id]"
+      assert_select "select#job_job_type", :name => "job[job_type]"
       assert_select "input#job_coordinates", :name => "job[coordinates]"
-      assert_select "input#job_status", :name => "job[status]"
       assert_select "textarea#job_notes", :name => "job[notes]"
     end
   end

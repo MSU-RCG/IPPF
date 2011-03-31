@@ -1,5 +1,4 @@
 class JobsController < ApplicationController
-  
   before_filter :authenticate_user!
   
   # GET /jobs
@@ -44,10 +43,12 @@ class JobsController < ApplicationController
   # POST /jobs.xml
   def create
     @job = Job.new(params[:job])
-
+    @job.user = current_user
+    @job.status = :pending
+    
     respond_to do |format|
       if @job.save
-        format.html { redirect_to(@job, :notice => 'Job was successfully created.') }
+        format.html { redirect_to(jobs_url, :notice => 'Job was successfully created.') }
         format.xml  { render :xml => @job, :status => :created, :location => @job }
       else
         format.html { render :action => "new" }

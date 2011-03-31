@@ -11,16 +11,10 @@
     = f.text_field :name
   .field
     = f.label :job_type
-    = f.text_field :job_type
-  .field
-    = f.label :user_id
-    = f.text_field :user_id
+    = f.select(:job_type, Job.job_types)
   .field
     = f.label :coordinates
     = f.text_field :coordinates
-  .field
-    = f.label :status
-    = f.text_field :status
   .field
     = f.label :notes
     = f.text_area :notes
