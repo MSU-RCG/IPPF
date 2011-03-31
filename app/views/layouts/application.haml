@@ -1,11 +1,123 @@
-!!! 5
-%html
+!!!
+%html{:lang => "en-US", :xmlns => "http://www.w3.org/1999/xhtml"}
+  / Web Template3_widev1.01
   %head
-    %title IPPF
+    %meta{:content => "text/html; charset=iso-8859-1", "http-equiv" => "Content-Type"}/
+    %meta{:content => "", :name => "description"}/
+    %meta{:content => "", :name => "keywords"}/
+    %link{:href => "http://www.montana.edu/msucommon/stylesv2/screen.css", :media => "screen", :rel => "stylesheet", :type => "text/css"}/
+    /[if IE 6] <link rel="stylesheet" type="text/css" href="http://www.montana.edu/msucommon/stylesv2/ie6screen.css"  media="screen" />
+    %link{:href => "http://www.montana.edu/msucommon/stylesv2/mobile.css", :media => "handheld, only screen and (max-device-width: 480px)", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "http://www.montana.edu/msucommon/stylesv2/print.css", :media => "print", :rel => "stylesheet", :type => "text/css"}/
+    / END BRANDED CONTENT DO NOT EDIT
+    / 
+    %title Montana State University - Page Title
+    / Add custom styles here
     = stylesheet_link_tag :all
     = javascript_include_tag :defaults
     = csrf_meta_tag
+    / 
+    / BEGIN BRANDED CONTENT DO NOT EDIT
+    :javascript
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-4471790-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
   %body
-    %p.notice= notice
-    %p.alert= alert
-    = yield 
+    #table
+      / HEADER INFORMATION
+      #header
+        / Normal header
+        #banner
+          / END BRANDED CONTENT DO NOT EDIT
+          / 
+          / 
+          / Use College Banners for Department and Research Centers, see the following link
+          / http://www.montana.edu/web/templates/templates2/instructions.html
+          / 
+          %img{:align => "middle", :alt => "Montana State University in Bozeman", :border => "0", :height => "60px", :src => "http://www.montana.edu/msucommon/imagesv2/banner2.png", :title => "Montana State University in Bozeman", :usemap => "#Map", :width => "960px"}/
+          %map#Map{:name => "Map"}
+            %area{:alt => "Montana State University - Home", :coords => "0,0,180,60", :href => "http://www.montana.edu/", :shape => "rect", :target => "_top"}/
+          / 
+          / BEGIN BRANDED CONTENT DO NOT EDIT
+          #headnav
+            / Nav links listed right to left
+            .navlink
+              %a{:href => "http://www.montana.edu/people/", :title => "Directories"} Directories
+            .navlink{:style => "border-left:0;"}
+              %a{:href => "http://www.montana.edu/siteindex/", :title => "A-Z Index"} A-Z Index
+          .search
+            %form{:action => "http://www.montana.edu/search/", :method => "get", :style => "display: block; display:inline"}
+              %input{:name => "cx", :type => "hidden", :value => "008992511269271655684:zana6q1rfbs"}/
+              %input{:name => "cof", :type => "hidden", :value => "FORID:11"}/
+              %input.searchbox{:alt => "Search MSU", :name => "q", :onfocus => "if (this.value == 'Search MSU') this.value = '';", :size => "15", :type => "text", :value => "Search MSU"}/
+              %input.searchbtn{:alt => "Search", :name => "sa", :src => "http://www.montana.edu/msucommon/imagesv2/go.png", :type => "image"}/
+        / End Banner
+      / END HEADER INFORMATION
+      / Print
+      .printheader
+        %img{:alt => "Montana State University", :height => "63px", :src => "http://www.montana.edu/msucommon/imagesv2/msublackhorizsm.png", :width => "250px"}/
+      .printhr
+      / BEGIN MAIN CONTENT
+      #maincontent
+        / END BRANDED CONTENT DO NOT EDIT
+        / 
+        / 
+        / Update Breadcrumb Navigation Here,
+        / Use &amp;gt; between links
+        / 
+        #crumbnav
+          != breadcrumbs
+        / END BREADCRUMB NAVIGATION
+        / BEGIN RIGHT PANE
+        #fullpane
+          %p.notice= notice
+          %p.alert= alert
+          .pagetitle
+            %h1
+              / END BRANDED CONTENT DO NOT EDIT
+              / 
+              / 
+              / Update Page Title
+              / 
+              IPPF
+              / 
+              / BEGIN BRANDED CONTENT DO NOT EDIT
+          / BEGIN Body Content
+          #fullcontent
+            / END BRANDED CONTENT DO NOT EDIT
+            / 
+            / 
+            / Image to float left of top content
+            / 
+            / #topimage
+            /  %img{:alt => "College Office", :height => "180px", :src => "images/example.jpg", :width => "268"}/
+            / EDIT HERE
+            = yield
+            / BEGIN BRANDED CONTENT DO NOT EDIT
+            %br{:clear => "all"}/
+            / END Body Content
+          %br{:clear => "all"}/
+        / END MAIN CONTENT
+      / Print
+      .printhr
+      / BEGIN FOOTER CONTENT
+      #footer
+        .footerhr>
+        \&copy;
+        %a.linkspacingmsu{:href => "http://www.montana.edu/"} Montana State University
+        %img#ada{:alt => "Accessibility", :height => "12px", :name => "ada", :src => "http://www.montana.edu/msucommon/imagesv2/ada2.png", :width => "9px"}/
+        %a.linkspacing{:href => "http://www.montana.edu/accessibility/"} Accessibility
+        %a.linkspacing{:href => "http://www.montana.edu/admissions/"} Admissions
+        %a.linkspacing{:href => "http://www.montana.edu/admin/"} Administration
+        %a.linkspacing{:href => "http://www.montana.edu/contact/"} Contact List
+        %a.linkspacing{:href => "http://www.montana.edu/jobs/"} Jobs
+        %a.linkspacing{:href => "http://www.montana.edu/legal/"} Legal &amp; Trademarks
+        %a.linkspacing{:href => "http://www.montana.edu/privacy/"} Privacy Policy
+        %a.linkspacing{:href => "http://www.montana.edu/siteindex/"} Site Index
+      / END FOOTER
+    / End Containing Table
