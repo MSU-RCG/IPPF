@@ -1,0 +1,3 @@
+class JobFilesController < ApplicationController
+
+end

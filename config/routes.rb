@@ -1,5 +1,6 @@
 Ippf::Application.routes.draw do
   resources :jobs
+  resources :job_files
 
   devise_for :users
 
