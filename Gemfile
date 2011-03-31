@@ -40,23 +40,14 @@ gem 'compass', ">= 0.10.6"
 gem 'devise'
 gem 'dm-devise',            DM_DEVISE_VERSION
 
+# File Handling
+gem 'carrierwave'
+
 # Bundle the extra gems:
 # gem 'bj'
 # gem 'nokogiri'
 
-group :development, :test do
-  # Testing
-  gem 'webrat'
-  gem 'rspec',              RSPEC_VERSION
-  gem 'rspec-rails',        RSPEC_VERSION
-  gem 'cucumber'
-  gem 'cucumber-rails',     CUKER_VERSION
-  gem 'factory_girl'
-  gem 'factory_girl_rails'
-  gem 'autotest-standalone'
-  gem 'autotest-growl'
-  gem 'autotest-fsevent'
-  gem 'redgreen'
+group :development do
   # Dev Webserver
   gem 'passenger'
   # Debugger
@@ -68,4 +59,18 @@ group :development, :test do
   #   rake db:automigrate
   gem 'rails_metrics', '~> 0.1', :git => 'git://github.com/engineyard/rails_metrics'
   # Misc
+end
+
+group :test do
+  gem 'webrat'
+  gem 'rspec',              RSPEC_VERSION
+  gem 'rspec-rails',        RSPEC_VERSION
+  gem 'cucumber'
+  gem 'cucumber-rails',     CUKER_VERSION
+  gem 'factory_girl'
+  gem 'factory_girl_rails'
+  gem 'autotest-standalone'
+  gem 'autotest-growl'
+  gem 'autotest-fsevent'
+  gem 'redgreen'  
 end
