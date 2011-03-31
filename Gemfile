@@ -8,10 +8,10 @@ CUKER_VERSION     = '~> 0.3.2'
 DM_DEVISE_VERSION = '~>1.2.0.rc'
 
 # Rails
-gem 'activesupport',      RAILS_VERSION, :require => 'active_support'
-gem 'actionpack',         RAILS_VERSION, :require => 'action_pack'
-gem 'actionmailer',       RAILS_VERSION, :require => 'action_mailer'
-gem 'railties',           RAILS_VERSION, :require => 'rails'
+gem 'activesupport',      RAILS_VERSION,        :require => 'active_support'
+gem 'actionpack',         RAILS_VERSION,        :require => 'action_pack'
+gem 'actionmailer',       RAILS_VERSION,        :require => 'action_mailer'
+gem 'railties',           RAILS_VERSION,        :require => 'rails'
 
 # DataMapper
 gem 'dm-rails',             DM_VERSION
@@ -51,7 +51,12 @@ group :development, :test do
   gem 'rspec-rails',        RSPEC_VERSION
   gem 'cucumber'
   gem 'cucumber-rails',     CUKER_VERSION
-  gem 'autotest'
+  gem 'factory_girl'
+  gem 'factory_girl_rails'
+  gem 'autotest-standalone'
+  gem 'autotest-growl'
+  gem 'autotest-fsevent'
+  gem 'redgreen'
   # Dev Webserver
   gem 'passenger'
   # Debugger
