@@ -1,5 +1,61 @@
+:javascript
+  $(function() {
+    $("#uploader").pluploadQueue({
+      // General settings
+      runtimes : 'gears,flash,silverlight,html5',
+      url : '/job_files/#{@job.uuid}',
+      max_file_size : '10mb',
+      unique_names : false,
+      multipart: false,
+      headers: { "X-CSRF-Token" : $('meta[name=csrf-token]').attr("content") },
+    
+      // Flash settings
+      flash_swf_url : '/javascripts/plupload.flash.swf',
+    
+      // Silverlight settings
+      silverlight_xap_url : '/javascripts/plupload.silverlight.xap'
+    });
+    
+
+    // Client side form validation
+    $('form').submit(function(e) {
+      var uploader = $('#uploader').pluploadQueue();
+      
+      uploader.bind('Init', function(up, params) {  
+        $('#filelist').html("<div>Current runtime: " + params.runtime + "</div>");  
+      });  
+      
+      uploader.bind('FilesAdded', function(up, files) {  
+        $.each(files, function(i, file) {  
+               $('#filelist').append(  
+                   '<div id="' + file.id + '">' +  
+                   'File: ' + file.name + ' (' + plupload.formatSize(file.size) + ') <b></b>' +  
+                   '</div>'  
+               );  
+           });  
+       });  
+      
+      
+      // Validate number of uploaded files
+      if (uploader.total.uploaded == 0) {
+        // Files in queue upload them first
+        if (uploader.files.length > 0) {
+          // When all files are uploaded submit form
+          uploader.bind('UploadProgress', function() {
+              if (uploader.total.uploaded == uploader.files.length)
+                  $('form').submit();
+          });
+          uploader.start();
+        } else
+          alert('You must at least upload one file.');
+        e.preventDefault();
+      }
+    });
+  });
+
 %h1 New job
 
 = render 'form'
-
 = link_to 'Back', jobs_path
+
+=# link_to 'Cancel', cancel_job_path(@job.uuid)
