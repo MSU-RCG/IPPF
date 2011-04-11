@@ -18,4 +18,10 @@ describe User do
     u.should respond_to(:jobs)
   end
   
+  it "should be able to be an admin" do
+    u = Factory.build(:admin)
+    u.should be_admin
+    u.should respond_to(:admin?)
+  end
+  
 end

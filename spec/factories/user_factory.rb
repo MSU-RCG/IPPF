@@ -11,3 +11,7 @@ end
 Factory.define :user_with_jobs, :parent => :user do |f|
   f.jobs [Factory(:job)]
 end
+
+Factory.define :admin, :parent => :user do |f|
+  f.admin true
+end

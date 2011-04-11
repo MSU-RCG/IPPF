@@ -108,4 +108,9 @@ describe Job do
     end
   end
   
+  it "should have a uuid" do
+    job = Factory.build(:job)
+    job.uuid.should_not be_nil
+  end
+  
 end
