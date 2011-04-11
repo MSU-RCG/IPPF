@@ -18,7 +18,11 @@
 %p
   %b Notes:
   = @job.notes
+  
+%p
+  %b Files
+  %ul
+    - @job.job_files.each do |f|
+      %li= f.name
 
-= link_to 'Edit', edit_job_path(@job)
-\|
 = link_to 'Back', jobs_path
