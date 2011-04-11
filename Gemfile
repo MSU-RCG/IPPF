@@ -42,6 +42,7 @@ gem 'dm-devise',            DM_DEVISE_VERSION
 
 # File Handling
 gem 'carrierwave'
+gem 'uuidtools'
 
 # Bundle the extra gems:
 # gem 'bj'
@@ -67,10 +68,10 @@ group :test do
   gem 'rspec-rails',        RSPEC_VERSION
   gem 'cucumber'
   gem 'cucumber-rails',     CUKER_VERSION
-  gem 'factory_girl'
-  gem 'factory_girl_rails'
   gem 'autotest-standalone'
   gem 'autotest-growl'
   gem 'autotest-fsevent'
   gem 'redgreen'  
+  gem 'factory_girl'
+  gem 'factory_girl_rails'
 end

@@ -250,4 +250,5 @@ DEPENDENCIES
   rspec (~> 2.5.0)
   rspec-rails (~> 2.5.0)
   ruby-debug
+  uuidtools
   webrat
