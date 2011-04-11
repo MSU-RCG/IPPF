@@ -11,6 +11,7 @@ class Job
   property :coordinates,  String,                   :required => true
   property :status,       Enum[:pending, :complete]
   property :notes,        Text
+  property :uuid,         UUID, :default => lambda { UUIDTools::UUID.timestamp_create }
   property :created_at,   DateTime
   property :created_on,   Date
   property :updated_at,   DateTime
@@ -25,6 +26,7 @@ class Job
   
   # Accessor for the valid job_types
   def self.job_types
-    Job.properties.select{|p| p.name == :job_type}.first.options[:flags]
+    Job.properties[:job_type].class.flags
   end
+  
 end

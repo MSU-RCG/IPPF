@@ -5,7 +5,9 @@
       %ul
         - @job.errors.full_messages.each do |msg|
           %li= msg
-
+  
+  = f.hidden_field :uuid
+  
   .field
     = f.label :name
     = f.text_field :name
@@ -17,6 +19,9 @@
     = f.text_field :coordinates
   .field
     = f.label :notes
-    = f.text_area :notes
+    = f.text_area :notes, :rows => 4
+  #uploader
+    %p Your browser doesn't have Flash, Silverlight, Gears, BrowserPlus or HTML5 support.
+
   .actions
-    = f.submit 'Save'
+    = f.submit 'Submit Job'
