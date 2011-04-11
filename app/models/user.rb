@@ -7,7 +7,8 @@ class User
          :recoverable, :rememberable, :trackable, :validatable
 
 
-  property :id, Serial
+  property :id,    Serial
+  property :admin, Boolean
   
   has n, :jobs
 
