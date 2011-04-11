@@ -4,7 +4,11 @@ class JobsController < ApplicationController
   # GET /jobs
   # GET /jobs.xml
   def index
-    @jobs = Job.all
+    if current_user.admin?
+      @jobs = Job.all
+    else
+      @jobs = current_user.jobs
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -43,6 +47,7 @@ class JobsController < ApplicationController
   # POST /jobs.xml
   def create
     @job = Job.new(params[:job])
+    @job.job_files = JobFile.all(:job_uuid => @job.uuid)
     @job.user = current_user
     @job.status = :pending
     
