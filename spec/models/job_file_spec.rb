@@ -7,10 +7,10 @@ describe JobFile do
     j.should be_valid
   end
   
-  it "should be invalid without a job" do
-    j = Factory.build(:job_file, :job => nil)
+  it "should be invalid without a job uuid" do
+    j = Factory.build(:job_file, :job_uuid => nil)
     j.should_not be_valid
-    j.errors.on(:job_id).should_not be_empty
+    j.errors.on(:job_uuid).should_not be_empty
   end
   
   it "should have a file" do
