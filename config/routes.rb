@@ -1,6 +1,5 @@
 Ippf::Application.routes.draw do
   resources :jobs
-  resources :job_files
 
   devise_for :users
 
@@ -15,9 +14,12 @@ Ippf::Application.routes.draw do
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
 
+  # match 'cancel_job/:uuid' => 'job_files#cancel', :as => :cancel_job
+  match 'job_files/:uuid', :to => 'job_files#create', :as => :create_job_file, :via => :post
+
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
-
+  
   # Sample resource route with options:
   #   resources :products do
   #     member do
