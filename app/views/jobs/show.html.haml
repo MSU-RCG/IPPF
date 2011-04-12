@@ -23,6 +23,7 @@
   %b Files
   %ul
     - @job.job_files.each do |f|
-      %li= f.name
+      %li
+        %a{:href => f.file.url}= f.file
 
 = link_to 'Back', jobs_path
