@@ -8,7 +8,10 @@ class Job
   property :id,           Serial
   property :name,         String,                   :required => true
   property :job_type,     Enum[:shape, :transect]
-  property :coordinates,  String,                   :required => true
+  property :x1,           String,                   :required => true
+  property :x2,           String,                   :required => true
+  property :y1,           String,                   :required => true
+  property :y2,           String,                   :required => true
   property :status,       Enum[:pending, :complete]
   property :notes,        Text
   property :uuid,         UUID, :default => lambda { UUIDTools::UUID.timestamp_create }
@@ -27,6 +30,11 @@ class Job
   # Accessor for the valid job_types
   def self.job_types
     Job.properties[:job_type].class.flags
+  end
+  
+  # Convenience method for printing coordinates
+  def coordinates
+    "X1:%s Y1:%s X2:%s Y2:%s" % [x1, y1, x2, y2]
   end
   
 end

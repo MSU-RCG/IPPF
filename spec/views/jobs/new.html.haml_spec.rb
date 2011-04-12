@@ -19,7 +19,10 @@ describe "jobs/new.html.haml" do
     assert_select "form", :action => jobs_path, :method => "post" do
       assert_select "input#job_name", :name => "job[name]"
       assert_select "select#job_job_type", :name => "job[job_type]"
-      assert_select "input#job_coordinates", :name => "job[coordinates]"
+      assert_select "input#job_x1", :name => "job[x1]"
+      assert_select "input#job_x2", :name => "job[x2]"
+      assert_select "input#job_y1", :name => "job[y1]"
+      assert_select "input#job_y2", :name => "job[y2]"
       assert_select "textarea#job_notes", :name => "job[notes]"
       assert_select "input#job_uuid", :name => "job[uuid]"
     end

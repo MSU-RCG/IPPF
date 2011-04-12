@@ -14,9 +14,17 @@
   .field
     = f.label :job_type
     = f.select(:job_type, Job.job_types)
-  .field
-    = f.label :coordinates
-    = f.text_field :coordinates
+  .p Coordinate Pairs:
+  .p
+    - [:x1, :y1].each do |coord|
+      %span.field
+        = f.label coord
+        = f.text_field(coord, :size => 5)
+  .p
+    - [:x2, :y2].each do |coord|
+      %span.field
+        = f.label coord
+        = f.text_field(coord, :size => 5)
   .field
     = f.label :notes
     = f.text_area :notes, :rows => 4

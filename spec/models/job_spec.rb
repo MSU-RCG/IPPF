@@ -78,10 +78,18 @@ describe Job do
     job.errors.on(:name).should_not be_empty
   end
   
-  it "should be invalid without coordinates" do
-    job = Factory(:job, :coordinates => nil)
-    job.should_not be_valid
-    job.errors.on(:coordinates).should_not be_empty
+  it "should be invalid when missing any of its coordinates" do
+    [:x1, :x2, :y1, :y2].each do |coord|
+      job = Factory(:job, coord => nil)
+      job.should_not be_valid
+      job.errors.on(coord).should_not be_empty
+    end
+  end
+  
+  it "should output the set of coordinates when called" do
+    job = Factory.build(:job)
+    job.should respond_to(:coordinates)
+    job.coordinates.should == "X1:1234  Y1:7 890 X2:890 Y2:1290"
   end
   
   it "should optionally have notes" do
@@ -112,5 +120,6 @@ describe Job do
     job = Factory.build(:job)
     job.uuid.should_not be_nil
   end
+  
   
 end
