@@ -13,7 +13,7 @@
     / 
     %title Montana State University - Page Title
     / Add custom styles here
-    = stylesheet_link_tag :all
+    = stylesheet_link_tag :all, :recursive => true
     = javascript_include_tag :defaults
 
     = javascript_include_tag 'jquery.uploadify.v2.1.4.min.js'
@@ -78,10 +78,50 @@
         #crumbnav
           != breadcrumbs
         / END BREADCRUMB NAVIGATION
+        - if @nav
+          #left
+            .links
+              Logged in as: #{current_user.email}
+              = "(A)" if current_user.admin?
+              %h2 IPPF
+              = link_to "Jobs", jobs_path
+              =# link_to users_path, "Users"
+              = link_to "Sign Out", destroy_user_session_path
+              / End Links
+            / 
+            / BEGIN BRANDED CONTENT DO NOT EDIT
+            / 
+            / Begin Contact Us box
+            / 
+            #contact
+              / END BRANDED CONTENT DO NOT EDIT
+              / 
+              / 
+              / Begin Insert Contact Information
+              / 
+              %h2 Research Computing Group
+              %p
+                Montana State University
+                %br/
+                P.O. Box 173505
+                %br/
+                Bozeman, MT 59717-3505
+              %p
+                Tel: (406) 994-3416
+                %br/
+                E-mail:
+                %a{:href => "mailto:ippf-support@rcg.msu.montana.edu"} ippf-support@rcg.msu.montana.edu
+                %br/
+                Location: 1 Lewis Hall
+              %h2 Administrator: Patrick Lawrence
+              %p Developer: Pol Llovet
+              / Add any additional contact information
+              / 
+              / BEGIN BRANDED CONTENT DO NOT EDIT
         / BEGIN RIGHT PANE
-        #fullpane
-          %p.notice= notice
-          %p.alert= alert
+        %div{:id => @nav ? 'rightpane' : 'fullpane'}
+          .notice= notice
+          .alert= alert
           .pagetitle
             %h1
               / END BRANDED CONTENT DO NOT EDIT
@@ -89,11 +129,11 @@
               / 
               / Update Page Title
               / 
-              IPPF
+              = page_title # This is a helper
               / 
               / BEGIN BRANDED CONTENT DO NOT EDIT
           / BEGIN Body Content
-          #fullcontent
+          %div{:id => @nav ? 'content' : 'fullcontent'}
             / END BRANDED CONTENT DO NOT EDIT
             / 
             / 
