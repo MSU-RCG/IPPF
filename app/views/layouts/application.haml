@@ -16,8 +16,9 @@
     = stylesheet_link_tag :all
     = javascript_include_tag :defaults
 
-    = javascript_include_tag 'plupload.full.min.js'
-    = javascript_include_tag 'jquery.plupload.queue.min.js'
+    = javascript_include_tag 'jquery.uploadify.v2.1.4.min.js'
+    = javascript_include_tag 'swfobject.js'
+
     = csrf_meta_tag
     
     / 
@@ -102,6 +103,7 @@
             /  %img{:alt => "College Office", :height => "180px", :src => "images/example.jpg", :width => "268"}/
             / EDIT HERE
             = yield
+            = yield :scripts
             / BEGIN BRANDED CONTENT DO NOT EDIT
             %br{:clear => "all"}/
             / END Body Content
