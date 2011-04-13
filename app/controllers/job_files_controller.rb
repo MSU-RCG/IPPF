@@ -1,14 +1,18 @@
 class JobFilesController < ApplicationController
-  before_filter :authenticate_user!
+  # before_filter :authenticate_user!
 
   # POST /job_files/:uuid
   def create
-    puts "******STARTING UPLOAD******"
-    @jobfile = JobFile.new(:name => params[:name])
-    @jobfile.job_uuid = params[:uuid]
-    @jobfile.file = params[:file]
-    status = @jobfile.save ? :created : :bad_request
-    logger.info @jobfile.errors.full_messages
-    render :nothing => true, :status => status
+    @job_file = JobFile.new(:name => params[:Filename])
+    @job_file.job_uuid = params[:uuid]
+    @job_file.file = params[:job_file][:file]
+    if @job_file.save
+      render :text => render_to_string( :partial => 'job_files/job_file', 
+                                        :locals => {:job_file => @job_file})
+    else
+      flash[:error] = 'Job File could not be uploaded'
+      render :nothing => true, :status => 500
+    end
   end
+  
 end

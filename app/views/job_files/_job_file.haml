@@ -1,0 +1,3 @@
+.job_file[job_file]
+  %a{:href => job_file.file_url}= job_file.name
+  =# link_to "Delete", delete_job_files_url(job_file), :method => :delete, :confirm => "Are you sure?", :remote => :true
