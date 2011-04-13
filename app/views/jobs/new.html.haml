@@ -1,60 +1,26 @@
-:javascript
-  $(function() {
-    $("#uploader").pluploadQueue({
-      // General settings
-      runtimes : 'gears,flash,silverlight,html5',
-      url : '/job_files/#{@job.uuid}',
-      max_file_size : '10mb',
-      unique_names : false,
-      multipart: true,
-      multipart_params: {  
-        "authenticity_token" : '#{form_authenticity_token}'  
-      },
-      headers: { "X-CSRF-Token" : $('meta[name=csrf-token]').attr("content") },
-    
-      // Flash settings
-      flash_swf_url : '/javascripts/plupload.flash.swf',
-    
-      // Silverlight settings
-      silverlight_xap_url : '/javascripts/plupload.silverlight.xap'
-    });
-    
+- key = Rails.application.config.session_options[:key]
 
-    // Client side form validation
-    $('form').submit(function(e) {
-      var uploader = $('#uploader').pluploadQueue();
-      
-      uploader.bind('Init', function(up, params) {  
-        $('#filelist').html("<div>Current runtime: " + params.runtime + "</div>");  
-      });  
-      
-      uploader.bind('FilesAdded', function(up, files) {  
-        $.each(files, function(i, file) {  
-               $('#filelist').append(  
-                   '<div id="' + file.id + '">' +  
-                   'File: ' + file.name + ' (' + plupload.formatSize(file.size) + ') <b></b>' +  
-                   '</div>'  
-               );  
-           });  
-       });  
-      
-      
-      // Validate number of uploaded files
-      if (uploader.total.uploaded == 0) {
-        // Files in queue upload them first
-        if (uploader.files.length > 0) {
-          // When all files are uploaded submit form
-          uploader.bind('UploadProgress', function() {
-              if (uploader.total.uploaded == uploader.files.length)
-                  $('form').submit();
-          });
-          uploader.start();
-        } else
-          alert('You must at least upload one file.');
-        e.preventDefault();
+= content_for :scripts do
+  :javascript
+    var upload_params = {
+      '#{key}' : '#{cookies[key]}',
+      '#{request_forgery_protection_token}' : '#{form_authenticity_token}',
+      '_http_accept': 'application/javascript',
+    };
+    var url = $('#uploader').attr('rel');
+    $('#uploader').uploadify({
+      'uploader' : '/assets/uploadify.swf',
+      'script' : url,
+      'fileDataName' : 'job_file[file]',
+      'fileExt' : '*.*',
+      'cancelImg' : '/images/cancel.png',
+      'multi' : true,
+      'scriptData' : upload_params,
+      'auto' : true,
+      'onComplete' : function(e, id, obj, response, data) {
+        $('#job_files').append(response);
       }
     });
-  });
 
 %h1 New job
 

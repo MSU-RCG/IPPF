@@ -28,8 +28,8 @@
   .field
     = f.label :notes
     = f.text_area :notes, :rows => 4
-  #uploader
-    %p Your browser doesn't have Flash, Silverlight, Gears, BrowserPlus or HTML5 support.
+  #job_files
+    #uploader{:rel => create_job_file_url(@job.uuid)}
 
   .actions
     = f.submit 'Submit Job'
