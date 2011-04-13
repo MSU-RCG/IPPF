@@ -3,4 +3,39 @@
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
 
-@import compass/reset
+// @import compass/reset
+
+label, input, textarea, .job_file
+  font-size: 1.25em
+  font-family: Arial,Helvetica,sans-serif
+  margin-bottom: .25em
+
+.field
+  margin-bottom: .5em
+
+form#new_job
+  margin-top: .5em
+  label
+    display: block
+    width: 150px
+    float: left
+  .coords, .job_types, .uploaded_files
+    width: 500px
+    float: left
+    margin-bottom: .5em
+    label
+      display: inline
+      float: none
+      
+.actions
+  margin-left: 150px
+
+table.jobs-table
+  font-size:  1.25em
+  width: 100%
+  tr
+    background-color: #EEE
+  td
+    padding: 3px
+  th
+    text-align:  center

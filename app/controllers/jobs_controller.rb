@@ -1,11 +1,13 @@
 class JobsController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :use_nav
   
   # GET /jobs
   # GET /jobs.xml
   def index
+    @page_title = "IPPF :: Jobs"
     if current_user.admin?
-      @jobs = Job.all
+      @jobs = Job.all(:order => :created_at.desc)
     else
       @jobs = current_user.jobs
     end
@@ -89,4 +91,5 @@ class JobsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
 end

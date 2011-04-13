@@ -13,4 +13,18 @@ module ApplicationHelper
     end
     crumbs
   end
+  
+  def page_title
+    page_title = "IPPF"
+    
+    page_title += case (controller.controller_name + controller.action_name)
+    when "jobsindex"
+      " :: Jobs"
+    when "jobsnew"
+      " :: New Job"
+    else
+      ""
+    end
+    page_title
+  end
 end

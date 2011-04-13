@@ -13,23 +13,33 @@
     = f.text_field :name
   .field
     = f.label :job_type
-    = f.select(:job_type, Job.job_types)
-  .p Coordinate Pairs:
-  .p
-    - [:x1, :y1].each do |coord|
-      %span.field
-        = f.label coord
-        = f.text_field(coord, :size => 5)
-  .p
-    - [:x2, :y2].each do |coord|
-      %span.field
-        = f.label coord
-        = f.text_field(coord, :size => 5)
+    .job_types
+      - Job.job_types.each do |j|
+        %span.field
+          = f.label j
+          = f.radio_button :job_type, j
+  %br{:clear => 'both'}/
+  .field 
+    %label Coordinate Pairs:
+    .coords
+      - [:x1, :y1].each do |coord|
+        %span.field
+          = f.label coord
+          = f.text_field(coord, :size => 5)
+      %br/
+      - [:x2, :y2].each do |coord|
+        %span.field
+          = f.label coord
+          = f.text_field(coord, :size => 5)
+  %br{:clear => 'both'}/
   .field
     = f.label :notes
     = f.text_area :notes, :rows => 4
-  #job_files
-    #uploader{:rel => create_job_file_url(@job.uuid)}
-
+  .field
+    %label Files
+    #job_files.uploaded_files
+      #uploader{:rel => create_job_file_url(@job.uuid)}
+      = render :partial => 'job_files/job_file', :collection => @job.job_files
+  %br{:clear => 'both'}/
   .actions
     = f.submit 'Submit Job'

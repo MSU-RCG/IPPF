@@ -1,29 +1,32 @@
-%h1 Listing jobs
+- Job.statuses.each do |status|
+  %h2= status
 
-%table
-  %tr
-    %th Name
-    %th Job type
-    %th User
-    %th Coordinates
-    %th Status
-    %th Notes
-    %th
-
-  - @jobs.each do |job|
+  %table.jobs-table
     %tr
-      %td= job.name
-      %td= job.job_type
-      %td= job.user_id
-      %td= job.coordinates
-      %td= job.status
-      %td= job.notes
-      %td
-        = link_to 'Show', job
-        =#|
-        =# link_to 'Edit', edit_job_path(job)
-        =#|
-        =# link_to 'Destroy', job, :confirm => 'Are you sure?', :method => :delete
+      %th 
+      %th Name
+      %th Job type
+      %th User
+      %th Coordinates
+      %th Notes
+      %th Files
+      %th
+
+    - @jobs.select{|j| j.status == status}.each do |job|
+      %tr
+        %td= job.created_at.strftime("%Y-%m-%d %H:%M")
+        %td= job.name
+        %td= job.job_type
+        %td= job.user.email
+        %td= job.coordinates
+        %td= job.notes[0..50]
+        %td!= job.job_files.map{|jf| link_to jf.name, jf.file_url }.join('<br />')
+        %td
+          = link_to 'Details', job
+          =#|
+          =# link_to 'Edit', edit_job_path(job)
+          =#|
+          =# link_to 'Destroy', job, :confirm => 'Are you sure?', :method => :delete
 
 %br
 

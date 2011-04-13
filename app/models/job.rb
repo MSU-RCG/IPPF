@@ -32,6 +32,11 @@ class Job
     Job.properties[:job_type].class.flags
   end
   
+  # Accessor for the valid statuses
+  def self.statuses
+    Job.properties[:status].class.flags
+  end
+  
   # Convenience method for printing coordinates
   def coordinates
     "X1:%s Y1:%s X2:%s Y2:%s" % [x1, y1, x2, y2]
