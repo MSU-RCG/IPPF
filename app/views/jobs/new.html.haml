@@ -6,6 +6,7 @@
       '#{key}' : '#{cookies[key]}',
       '#{request_forgery_protection_token}' : '#{form_authenticity_token}',
       '_http_accept': 'application/javascript',
+      'auth_token': '#{current_user.authentication_token}'
     };
     var url = $('#uploader').attr('rel');
     $('#uploader').uploadify({
@@ -21,8 +22,6 @@
         $('#job_files').append(response);
       }
     });
-
-%h1 New job
 
 = render 'form'
 = link_to 'Back', jobs_path

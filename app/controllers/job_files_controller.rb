@@ -1,5 +1,5 @@
 class JobFilesController < ApplicationController
-  # before_filter :authenticate_user!
+  before_filter :authenticate_user!
 
   # POST /job_files/:uuid
   def create
