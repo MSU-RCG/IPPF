@@ -62,12 +62,15 @@ group :development do
   # Misc
 end
 
-group :test do
-  gem 'webrat'
+group :test, :development do
   gem 'rspec',              RSPEC_VERSION
   gem 'rspec-rails',        RSPEC_VERSION
   gem 'cucumber'
   gem 'cucumber-rails',     CUKER_VERSION
+end
+
+group :test do
+  gem 'webrat'
   gem 'autotest-standalone'
   gem 'autotest-growl'
   gem 'autotest-fsevent'
