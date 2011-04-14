@@ -10,6 +10,8 @@ module ApplicationHelper
       crumbs += "&gt; Sign Up"
     when "jobsindex"
       crumbs += "&gt; Jobs"
+    when "usersindex"
+      crumbs += "&gt; Users"
     end
     crumbs
   end

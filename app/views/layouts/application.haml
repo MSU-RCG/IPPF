@@ -120,6 +120,14 @@
               / BEGIN BRANDED CONTENT DO NOT EDIT
         / BEGIN RIGHT PANE
         %div{:id => @nav ? 'rightpane' : 'fullpane'}
+          :javascript
+            $(document).ready(function(){
+              setTimeout(function(){
+                $("div.notice").fadeOut("slow", function () {
+                  $("div.notice").remove();
+                }); 
+              }, 2000);
+            });
           .notice= notice
           .alert= alert
           .pagetitle

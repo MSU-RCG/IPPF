@@ -15,8 +15,8 @@ describe JobFilesController do
     it "assigns a newly created job as @job" do
       JobFile.stub(:new).with({:name => 'foo.file'}) { mock_job_file(:save => true) }
       mock_job_file.should_receive(:job_uuid=).with('foo')
-      post :create, :name => 'foo.file', :file => 'blarg', :uuid => 'foo'
-      assigns(:jobfile).should be(mock_job_file)
+      post :create, :Filename => 'foo.file', :job_file => 'blarg', :uuid => 'foo'
+      assigns(:job_file).should be(mock_job_file)
     end
   end
 

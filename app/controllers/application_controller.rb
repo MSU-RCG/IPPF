@@ -7,4 +7,10 @@ class ApplicationController < ActionController::Base
     @nav = true
   end
   
+  def admin!
+    unless current_user.admin?
+      redirect_to root_url, :notice => "You must be an administrator."
+    end
+  end
+  
 end
