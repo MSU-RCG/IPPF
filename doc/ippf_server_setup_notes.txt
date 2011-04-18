@@ -1,0 +1,61 @@
+Notes when setting up the IPPF VM
+
+Users
+ - Remove 'jaderobbins' user
+ - Add 'ippf' user
+
+Packages
+ - install: curl git-core
+ 
+RVM and Ruby
+ - become root with: sudo -i
+ - bash < <(curl -s https://rvm.beginrescueend.com/install/rvm)
+ - NOTE: it added the ippf user to the rvm group automatically, and *I don't know why* though that is what I would have done next!
+     Creating RVM system user group 'rvm'
+     Ensuring 'ippf' is in group 'rvm'
+     Adding user 'ippf' to the RVM group 'rvm'
+ - become ippf user with: su ippf
+ - echo "[[ -s \"/usr/local/rvm/scripts/rvm\" ]] && source \"/usr/local/rvm/scripts/rvm\"" >> ~/.bashrc 
+ - add following to ~ippf/.gemrc
+     ---
+     :sources:
+     - http://gems.rubyforge.org
+     - http://gems.github.com
+     gem: --no-ri --no-rdoc
+ - NOTE: the system gems for chef are just hanging out there waiting to get clobbered. I didn't think of this, so I think that the users should use user-land rvm, not system rvm.  It should work fine.
+ 
+Directory
+ - mkdir ~ippf/rails ~ippf/rails-dev
+
+ 
+Passenger & Nginx
+ - become root with `sudo -i`
+ - gem install passenger
+ - apt-get install libcurl4-openssl-dev libssl-dev zlib1g-dev
+ - passenger-install-nginx-module
+   - click '1' (Yes: Download and compile Nginx for me)
+   - click '<enter>' to install nginx to /opt
+ - Edit /opt/nginx/conf/nginx.conf:
+     - Add 'server_names_hash_bucket_size 64;' in the http conf section
+     - Add the server definitions in the http conf section:
+         server {
+              listen 80;
+              server_name ippf.rcg.montana.edu;
+              root /home/ippf/rails/current/public;
+              passenger_enabled on;
+          }
+  
+          server {
+              listen 8080;
+              server_name ippf.rcg.montana.edu;
+              root /home/ippf/rails-dev/current/public;
+              passenger_enabled on;
+          }
+ - cd && git clone git://github.com/jnstq/rails-nginx-passenger-ubuntu.git
+ - cp rails-nginx-passenger-ubuntu/nginx/nginx /etc/init.d/nginx
+ 
+ 
+User will need to do the following (app specific)
+ - install the ruby they want
+   - rvm install 1.8.7
+     - this might be problematic since passenger is pegged to the system ruby... it might also not matter.
