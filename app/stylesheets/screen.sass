@@ -13,7 +13,7 @@ label, input, textarea, .job_file
 .field
   margin-bottom: .5em
 
-form#new_job, form#new_user
+form#new_job, form#new_user, form.edit_user
   margin-top: .5em
   label
     display: block
@@ -39,12 +39,37 @@ form#new_job, form#new_user
   background-color: #EFAAAA
   
 
-table.jobs-table
+table.index-model-table, table.show-model-table
   font-size:  1.25em
+  margin-top: .5em
   width: 100%
-  tr
+  border: 1px solid #DDD
+  tr.zebra
     background-color: #EEE
-  td
-    padding: 3px
   th
     text-align:  center
+    background-color: #DDD
+  td
+    padding: 3px
+  td.property
+    font-weight: bold
+
+#toplogin
+  float: right
+  text-align: right
+
+#new-job-button, #new-user-button
+  float: right
+
+#content a.button
+  border-radius: 5px
+  display: block
+  width: 100px
+  font-size: 1.5em
+  background-color: #EECC2E
+  text-decoration: none
+  padding: 3px
+  text-align: center
+  border: 1px solid #054B8C
+  &:hover
+    background-color: #EECC2E + #111
