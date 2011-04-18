@@ -75,6 +75,8 @@ group :test do
   gem 'autotest-growl'
   gem 'autotest-fsevent'
   gem 'redgreen'  
+  # gem 'dm-sweatshop'
+  # gem 'randexp'
   gem 'factory_girl'
   gem 'factory_girl_rails'
 end
