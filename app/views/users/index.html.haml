@@ -1,16 +1,23 @@
-%table.jobs-table
+= link_to('New User', new_user_path, :class => 'button', :id => 'new-user-button')
+
+%table.index-model-table
   %tr
     %th Id
     %th Email
+    %th #Jobs (P/C)
     %th Admin?
     %th Sign In Count
     %th Last Sign In
     %th
 
   - @users.each do |user|
-    %tr
+    %tr{:class => cycle('','zebra')}
       %td= user.id
       %td= user.email
+      %td
+        = user.jobs.all(:status => :pending).count
+        \/
+        = user.jobs.all(:status => :complete).count     
       %td= user.admin?
       %td= user.sign_in_count
       %td= user.last_sign_in_at
@@ -20,7 +27,3 @@
         = link_to 'Edit', edit_user_path(user)
         |
         = link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete
-
-%br
-
-= link_to 'New User', new_user_path

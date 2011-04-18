@@ -1,29 +1,31 @@
-%p#notice= notice
-
-%p
-  %b Name:
-  = @job.name
-%p
-  %b Job type:
-  = @job.job_type
-%p
-  %b User:
-  = @job.user_id
-%p
-  %b Coordinates:
-  = @job.coordinates
-%p
-  %b Status:
-  = @job.status
-%p
-  %b Notes:
-  = @job.notes
-  
-%p
-  %b Files
-  %ul
-    - @job.job_files.each do |jf|
-      %li
-        %a{:href => jf.file_url}= jf.name
+%table.show-model-table
+  %tr
+    %th Property
+    %th Value
+  %tr{:class => cycle('zebra','')}
+    %td.property Name:
+    %td= @job.name
+  %tr{:class => cycle('zebra','')}
+    %td.property Job Type:
+    %td= @job.job_type
+  %tr{:class => cycle('zebra','')}
+    %td.property User:
+    %td= @job.user.email
+  %tr{:class => cycle('zebra','')}
+    %td.property Coordinates:
+    %td= @job.coordinates
+  %tr{:class => cycle('zebra','')}
+    %td.property Status:
+    %td= @job.status
+  %tr{:class => cycle('zebra','')}
+    %td.property Files:
+    %td
+      %ul
+        - @job.job_files.each do |jf|
+          %li
+            %a{:href => jf.file_url}= jf.name
+  %tr{:class => cycle('zebra','')}
+    %td.property Notes:
+    %td= @job.notes
 
 = link_to 'Back', jobs_path

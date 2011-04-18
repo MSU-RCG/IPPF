@@ -76,60 +76,63 @@
         / Use &amp;gt; between links
         / 
         #crumbnav
+          - if current_user
+            #toplogin
+              Logged In: #{current_user.email}
+              = "(A)" if current_user.admin?
           != breadcrumbs
         / END BREADCRUMB NAVIGATION
-        - if @nav
-          #left
-            .links
-              Logged in as: #{current_user.email}
-              = "(A)" if current_user.admin?
-              %h2 IPPF
+        #left
+          .links
+            - if current_user
+              %h2 IPPF Navigation
               = link_to "Jobs", jobs_path
-              =# link_to users_path, "Users"
+              - if current_user.admin?
+                = link_to "Users", users_path
               = link_to "Sign Out", destroy_user_session_path
               / End Links
+          / 
+          / BEGIN BRANDED CONTENT DO NOT EDIT
+          / 
+          / Begin Contact Us box
+          / 
+          #contact
+            / END BRANDED CONTENT DO NOT EDIT
+            / 
+            / 
+            / Begin Insert Contact Information
+            / 
+            %h2 Research Computing Group
+            %p
+              Montana State University
+              %br/
+              P.O. Box 173505
+              %br/
+              Bozeman, MT 59717-3505
+            %p
+              Tel: (406) 994-3416
+              %br/
+              E-mail:
+              %a{:href => "mailto:ippf-support@rcg.msu.montana.edu"} ippf-support@rcg.msu.montana.edu
+              %br/
+              Location: 1 Lewis Hall
+            %h2 Administrator: Patrick Lawrence
+            %p Developer: Pol Llovet
+            / Add any additional contact information
             / 
             / BEGIN BRANDED CONTENT DO NOT EDIT
-            / 
-            / Begin Contact Us box
-            / 
-            #contact
-              / END BRANDED CONTENT DO NOT EDIT
-              / 
-              / 
-              / Begin Insert Contact Information
-              / 
-              %h2 Research Computing Group
-              %p
-                Montana State University
-                %br/
-                P.O. Box 173505
-                %br/
-                Bozeman, MT 59717-3505
-              %p
-                Tel: (406) 994-3416
-                %br/
-                E-mail:
-                %a{:href => "mailto:ippf-support@rcg.msu.montana.edu"} ippf-support@rcg.msu.montana.edu
-                %br/
-                Location: 1 Lewis Hall
-              %h2 Administrator: Patrick Lawrence
-              %p Developer: Pol Llovet
-              / Add any additional contact information
-              / 
-              / BEGIN BRANDED CONTENT DO NOT EDIT
         / BEGIN RIGHT PANE
-        %div{:id => @nav ? 'rightpane' : 'fullpane'}
+        #rightpane
           :javascript
             $(document).ready(function(){
               setTimeout(function(){
-                $("div.notice").fadeOut("slow", function () {
-                  $("div.notice").remove();
+                $(".fadeout").fadeOut("slow", function () {
+                  $(".fadeout").remove();
                 }); 
               }, 2000);
             });
-          .notice= notice
-          .alert= alert
+          .notice.fadeout= notice
+          .alert.fadeout= alert
           .pagetitle
             %h1
               / END BRANDED CONTENT DO NOT EDIT
@@ -137,11 +140,11 @@
               / 
               / Update Page Title
               / 
-              = page_title # This is a helper
+              != page_title # This is a helper
               / 
               / BEGIN BRANDED CONTENT DO NOT EDIT
           / BEGIN Body Content
-          %div{:id => @nav ? 'content' : 'fullcontent'}
+          #content
             / END BRANDED CONTENT DO NOT EDIT
             / 
             / 

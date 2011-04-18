@@ -1,0 +1,7 @@
+%table.show-model-table
+  - User.admin_properties.each do |p|
+    %tr
+      %td{:style => 'font-weight: bold'}= p.name.to_s.titleize
+      %td= @user[p.name]
+
+= link_to 'Back', users_path

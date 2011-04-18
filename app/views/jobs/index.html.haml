@@ -1,7 +1,9 @@
-- Job.statuses.each do |status|
-  %h2= status
+= link_to('New Job', new_job_path, :class => 'button', :id => 'new-job-button')
 
-  %table.jobs-table
+- Job.statuses.each do |status|
+  %h2= status.to_s.titleize
+
+  %table.index-model-table
     %tr
       %th 
       %th Name
@@ -13,8 +15,8 @@
       %th
 
     - @jobs.select{|j| j.status == status}.each do |job|
-      %tr
-        %td= job.created_at.strftime("%Y-%m-%d %H:%M")
+      %tr{:class => cycle('','zebra')}
+        %td.zebra= job.created_at.strftime("%Y-%m-%d %H:%M")
         %td= job.name
         %td= job.job_type
         %td= job.user.email
@@ -27,7 +29,3 @@
           =# link_to 'Edit', edit_job_path(job)
           =#|
           =# link_to 'Destroy', job, :confirm => 'Are you sure?', :method => :delete
-
-%br
-
-= link_to 'New Job', new_job_path
