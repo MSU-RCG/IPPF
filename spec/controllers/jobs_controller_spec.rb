@@ -13,26 +13,24 @@ describe JobsController do
   before(:each) do
     @user = Factory(:user)
     sign_in @user
+    controller.stub(:current_user) { @user }
   end
 
   describe "GET index" do
     describe "as an admin" do
       it "assigns all jobs as @jobs" do
-        pending "this fails and I don't know why"
-        # @user.should_receive(:admin?).and_return(true)
-        # Job.stub(:all) { [mock_job] }
-        # get :index
-        # assigns(:jobs).should be_kind_of Array
-        # assigns(:jobs).should == [mock_job]
+        @user.should_receive(:admin?).and_return(true)
+        Job.stub(:all) { mock_job }
+        get :index
+        assigns(:jobs).should == mock_job
       end
     end
 
     describe "as a non-admin" do
       it "assigns the user's jobs as @jobs" do
-        pending "this fails and I don't know why"
-        # @user.stub(:jobs) { [mock_job] }
-        # get :index
-        # assigns(:jobs).should eq([mock_job])
+        @user.stub(:jobs) { [mock_job] }
+        get :index
+        assigns(:jobs).should eq([mock_job])
       end      
     end
   end
@@ -92,10 +90,10 @@ describe JobsController do
       end
 
       it "re-renders the 'new' template" do
-        pending "This test fails and I don't know why"
-        # Job.stub(:new) { mock_job(:save => false) }
-        # post :create, :job => {}
-        # response.should render_template("new")
+        Job.stub(:new) { mock_job }
+        mock_job.should_receive(:save).and_return(false)
+        post :create, :job => {}
+        response.should render_template("new")
       end
     end
   end

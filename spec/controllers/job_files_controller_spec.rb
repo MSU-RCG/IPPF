@@ -20,10 +20,10 @@ describe JobFilesController do
     end
   end
 
-  describe "DELETE job_files/:uuid" do
-    it "destroys the job files" do
-      pending "Write this test when you need it."
-    end
-  end
+  # describe "DELETE job_files/:uuid" do
+  #   it "destroys the job files" do
+  #     pending "Write this test when you need it."
+  #   end
+  # end
 
 end
