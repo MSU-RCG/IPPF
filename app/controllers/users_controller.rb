@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       format.html
     end
   end
-
+  
   # GET /users/new
   # GET /users/new.xml 
   # GET /users/new.json                                  HTML AND AJAX
@@ -28,14 +28,13 @@ class UsersController < ApplicationController
       format.html
     end
   end
-
+  # 
   # GET /users/1
   # GET /users/1.xml
   # GET /users/1.json                                    HTML AND AJAX
   #-------------------------------------------------------------------
   def show
-    # @user = User.get(params[:id])
-    @user = User.get(1)
+    @user = User.get(params[:id])
     if @user
       respond_to do |format|
         format.json { render :json => @user }
@@ -46,11 +45,11 @@ class UsersController < ApplicationController
       render :template => 'application/404', :status => :not_found
     end
   end
-
+  # 
   # GET /users/1/edit  
   # GET /users/1/edit.xml
   # GET /users/1/edit.json                               HTML AND AJAX
-  #-------------------------------------------------------------------
+  # -------------------------------------------------------------------
   def edit
     @user = User.get(params[:id])
     if @user
@@ -64,7 +63,8 @@ class UsersController < ApplicationController
       # render :file => "#{Rails.root}/public/404.html", :layout => false, :status => 404
     end
   end
-
+  
+  # 
   # DELETE /users/1     
   # DELETE /users/1.xml
   # DELETE /users/1.json                               HTML AND AJAX
@@ -72,21 +72,21 @@ class UsersController < ApplicationController
   def destroy
     @user = User.get(params[:id])
     @user.destroy!
-
+  
     respond_to do |format|
       format.json { render :json => @user.to_json, :status => 200 }
       format.xml  { head :ok }
       format.html { redirect_to users_path, :notice => 'User was successfully deleted.' }      
     end
   end
-
+  # 
   # POST /users
   # POST /users.xml         
   # POST /users.json                                   HTML AND AJAX
   #-----------------------------------------------------------------
   def create
     @user = User.new(params[:user])
-
+  
     respond_to do |format|
       if @user.save
         format.json { render :json => @user.to_json, :status => 200 }
@@ -106,7 +106,7 @@ class UsersController < ApplicationController
   #-----------------------------------------------------------------
   def update
     @user = User.get(params[:id])
-
+  
     respond_to do |format|
       if @user.update(params[:user])
         format.json { render :json => @user.to_json, :status => 200 }
