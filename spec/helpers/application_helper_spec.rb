@@ -12,7 +12,40 @@ require 'spec_helper'
 # end
 describe ApplicationHelper do
   
-  it "creates breadcrumbs from the controller and action" do
-    helper.should respond_to(:breadcrumbs)
+  describe "Breadcrumbs" do
+    it "creates breadcrumbs from the controller and action" do
+      helper.should respond_to(:breadcrumbs)
+    end
+
+    it "should create a sensible default breadcrumb" do
+      controller.stub(:controller_name) { "thing" }
+      controller.stub(:action_name) { "blarg" }
+      helper.breadcrumbs.should == "IPPF &gt; Thing Blarg"    
+    end
+
+    it "should use a custom response for a known breadcrumb" do
+      controller.stub(:controller_name) { "jobs" }
+      controller.stub(:action_name) { "index" }
+      helper.breadcrumbs.should == "IPPF &gt; Jobs"    
+    end
   end
+
+  describe "Page Title" do
+    it "creates page title from the controller and action" do
+      helper.should respond_to(:page_title)
+    end
+  
+    it "should create a sensible default page title" do
+      controller.stub(:controller_name) { "thing" }
+      controller.stub(:action_name) { "blarg" }
+      helper.page_title.should == "IPPF :: Thing Blarg"    
+    end
+  
+    it "should use a custom response for a known page title" do
+      controller.stub(:controller_name) { "jobs" }
+      controller.stub(:action_name) { "index" }
+      helper.page_title.should == "IPPF :: Jobs"    
+    end
+  end
+
 end
