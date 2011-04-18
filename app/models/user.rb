@@ -15,4 +15,8 @@ class User
   
   has n, :jobs
 
+  def self.admin_properties
+    self.properties - self.properties.select{|p| p.name.to_s =~ /token|password/}
+  end
+
 end

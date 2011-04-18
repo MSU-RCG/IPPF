@@ -24,4 +24,9 @@ describe User do
     u.should respond_to(:admin?)
   end
   
+  it "should have an admin_properties convenience method" do
+    User.should respond_to(:admin_properties)
+    User.admin_properties.select{|p| p =~ /token|password/}.should be_empty
+  end
+  
 end
