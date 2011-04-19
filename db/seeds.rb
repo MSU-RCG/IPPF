@@ -7,3 +7,5 @@
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
 DataMapper.auto_migrate!
+
+User.create(:email => 'admin@ippf.rcg.montana.edu', :admin => true, :password => 'password', :password_confirmation => 'password')
