@@ -60,16 +60,26 @@ describe Job do
     job.errors.on(:job_type).should_not be_empty
   end 
   
-  it "should be invalid if the status is not 'pending' or 'complete'" do
-    ['foo', ' ', 'squid'].each do |j|
+  it "should be invalid if the status is not 'new','pending' or 'complete'" do
+    [:foo, :' ', :squid].each do |j|
       job = Factory.build(:job, :status => j)
       job.should_not be_valid
       job.errors.on(:status).should_not be_empty
     end
-    ['pending', 'complete'].each do |j|
+    [:pending, :complete, :new].each do |j|
       job = Factory(:job, :status => j)
+      job.status.should == j
       job.should be_valid
     end
+  end
+  
+  it "should have a statuses method with the statuses in the right order" do
+    Job.statuses.should == [:new, :pending, :complete]
+  end
+  
+  it "should have a status of 'new' when it is created" do
+    job = Job.new
+    job.status.should == :new
   end
   
   it "should be invalid without a name" do

@@ -12,7 +12,7 @@ class Job
   property :x2,           String,                   :required => true
   property :y1,           String,                   :required => true
   property :y2,           String,                   :required => true
-  property :status,       Enum[:pending, :complete]
+  property :status,       Enum[:new, :pending, :complete], :default => :new
   property :notes,        Text
   property :uuid,         UUID, :default => lambda { UUIDTools::UUID.timestamp_create }
   property :created_at,   DateTime
