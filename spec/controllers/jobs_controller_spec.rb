@@ -70,7 +70,7 @@ describe JobsController do
         Job.stub(:new).with({'these' => 'params'}) { mock_job(:save => true, :uuid => 'foo') }
         mock_job.should_receive(:user=).with(@user)
         mock_job.should_receive(:job_files=).with([@jf])
-        mock_job.should_receive(:status=).with(:pending)
+        mock_job.should_not_receive(:status=)
         post :create, :job => {'these' => 'params'}
         assigns(:job).should be(mock_job)
       end
