@@ -5,7 +5,7 @@ Users
  - Add 'ippf' user
 
 Packages
- - install: curl git-core
+ - install: curl git-core libcurl4-openssl-dev libssl-dev zlib1g-dev libsqlite3-dev
  
 RVM and Ruby
  - become root with: sudo -i
@@ -22,7 +22,7 @@ RVM and Ruby
      - http://gems.rubyforge.org
      - http://gems.github.com
      gem: --no-ri --no-rdoc
- - NOTE: the system gems for chef are just hanging out there waiting to get clobbered. I didn't think of this, so I think that the users should use user-land rvm, not system rvm.  It should work fine.
+ - NOTE: the system gems for chef are just hanging out there waiting to get clobbered. I didn't think of this, so I think that the app should be using a gemset (@ippf).  However this means that the passenger needs to be compiled in the app gemset.
  
 Directory
  - mkdir ~ippf/rails ~ippf/rails-dev
@@ -30,6 +30,7 @@ Directory
  
 Passenger & Nginx
  - become root with `sudo -i`
+ - use the gemset that the app is using: rvm use 1.8.7-p302@ippf
  - gem install passenger
  - apt-get install libcurl4-openssl-dev libssl-dev zlib1g-dev
  - passenger-install-nginx-module
@@ -51,6 +52,9 @@ Passenger & Nginx
               root /home/ippf/rails-dev/current/public;
               passenger_enabled on;
           }
+     - Make sure it is using the right gemset:
+        passenger_root /usr/local/rvm/gems/ruby-1.8.7-p302@ippf/gems/passenger-3.0.7;
+        passenger_ruby /usr/local/rvm/wrappers/ruby-1.8.7-p302@ippf/ruby;
  - cd && git clone git://github.com/jnstq/rails-nginx-passenger-ubuntu.git
  - cp rails-nginx-passenger-ubuntu/nginx/nginx /etc/init.d/nginx
  
@@ -58,4 +62,4 @@ Passenger & Nginx
 User will need to do the following (app specific)
  - install the ruby they want
    - rvm install 1.8.7
-     - this might be problematic since passenger is pegged to the system ruby... it might also not matter.
+
