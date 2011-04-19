@@ -51,10 +51,10 @@ class JobsController < ApplicationController
     @job = Job.new(params[:job])
     @job.job_files = JobFile.all(:job_uuid => @job.uuid)
     @job.user = current_user
-    @job.status = :pending
     
     respond_to do |format|
       if @job.save
+        JobMailer.job_created(@job).deliver
         format.html { redirect_to(jobs_url, :notice => 'Job was successfully created.') }
         format.xml  { render :xml => @job, :status => :created, :location => @job }
       else

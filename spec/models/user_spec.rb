@@ -29,4 +29,9 @@ describe User do
     User.admin_properties.select{|p| p =~ /token|password/}.should be_empty
   end
   
+  it "should have an admin_emails method that returns all administrative email addresses" do
+    u = Factory(:admin)
+    User.should respond_to(:admin_emails)
+    User.admin_emails.should == [u.email]
+  end
 end

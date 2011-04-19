@@ -1,0 +1,23 @@
+New Job Created: <%= @job.name %>
+
+Job URL: 
+  <%= job_url(@job) %>
+
+Job Type: 
+  <%= @job.job_type %> 
+
+Creator: 
+  <%= @job.user.email%>
+
+Coordinates: 
+  <%= @job.coordinates %>
+
+Status: 
+  <%= @job.status %>
+
+Job Files: 
+<% @job.job_files.each do |jf| %> 
+  - <%= jf.name %>  
+
+Job Notes:
+  <%= @job.notes %>

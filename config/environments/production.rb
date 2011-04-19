@@ -48,7 +48,10 @@ Ippf::Application.configure do
   config.active_support.deprecation = :notify
   
   # Devise Mailer Config
-  config.action_mailer.default_url_options = { :host => 'ippf.msu.montana.edu' }
+  config.action_mailer.default_url_options = { 
+    :host => 'ippf.msu.montana.edu',
+    :from => "ippf-support@rcg.msu.montana.edu"
+  }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
      :address => "gemini.msu.montana.edu",
