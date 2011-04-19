@@ -49,4 +49,11 @@ Ippf::Application.configure do
   
   # Devise Mailer Config
   config.action_mailer.default_url_options = { :host => 'ippf.msu.montana.edu' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+     :address => "gemini.msu.montana.edu",
+     :port => 25,
+     :domain => "montana.edu"
+  }
+
 end

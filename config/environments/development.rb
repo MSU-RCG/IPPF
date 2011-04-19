@@ -25,5 +25,7 @@ Ippf::Application.configure do
   
   # Devise Mailer Config
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.delivery_method = :file
+  config.action_mailer.file_options = { :location => 'tmp/mails'}
 end
 
