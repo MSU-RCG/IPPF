@@ -1,0 +1,24 @@
+New Job Created: 
+= "\t " + @job.name
+
+Job URL: 
+= "\t " + job_url(@job)
+
+Job Type: 
+= "\t " + @job.job_type 
+
+Creator: 
+= "\t " + @job.user.email
+
+Coordinates: 
+= "\t " + @job.coordinates
+
+Status: 
+= "\t " + @job.status
+
+Job Files: 
+- @job.job_files.each do |jf| 
+  = "\t -" + jf.name
+
+Job Notes:
+= "\t " + @job.notes
