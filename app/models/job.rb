@@ -1,17 +1,14 @@
 class Job
   include DataMapper::Resource
 
-  # Constants
-  JOB_TYPES = [:shape, :transect]
-
   # Properties
   property :id,           Serial
   property :name,         String,                   :required => true
   property :job_type,     Enum[:shape, :transect]
-  property :x1,           String,                   :required => true
-  property :x2,           String,                   :required => true
-  property :y1,           String,                   :required => true
-  property :y2,           String,                   :required => true
+  property :x_min,        Float,                    :required => true
+  property :x_max,        Float,                    :required => true
+  property :y_min,        Float,                    :required => true
+  property :y_max,        Float,                    :required => true
   property :status,       Enum[:new, :pending, :complete], :default => :new
   property :notes,        Text
   property :uuid,         UUID, :default => lambda { UUIDTools::UUID.timestamp_create }
@@ -25,7 +22,7 @@ class Job
   has n,      :job_files
   
   # Custom Validations
-  validates_presence_of :job_files, :if => lambda { |j| j.job_files.count > 0 }
+  validates_presence_of :job_files
   
   # Accessor for the valid job_types
   def self.job_types
@@ -39,7 +36,7 @@ class Job
   
   # Convenience method for printing coordinates
   def coordinates
-    "X1:%s Y1:%s X2:%s Y2:%s" % [x1, y1, x2, y2]
+    "Xmin:%s Ymin:%s Xmax:%s Ymax:%s" % [x_min, y_min, x_max, y_max]
   end
   
 end

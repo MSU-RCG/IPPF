@@ -22,12 +22,12 @@
   .field 
     %label Coordinate Pairs:
     .coords
-      - [:x1, :y1].each do |coord|
+      - [:x_min, :y_min].each do |coord|
         %span.field
           = f.label coord
           = f.text_field(coord, :size => 5)
       %br/
-      - [:x2, :y2].each do |coord|
+      - [:x_max, :y_max].each do |coord|
         %span.field
           = f.label coord
           = f.text_field(coord, :size => 5)
