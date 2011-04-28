@@ -2,10 +2,10 @@
 Factory.define :job do |f|
   f.name        "Name"
   f.job_type    "shape"
-  f.x1          "1234 "
-  f.x2          "890"
-  f.y1          "7 890"
-  f.y2          "1290"
+  f.x_min       -100.1
+  f.x_max       -100
+  f.y_min       40
+  f.y_max       40.1
   f.status      'pending'
   f.notes       "Here are some notes for the Job"
   f.association :user
