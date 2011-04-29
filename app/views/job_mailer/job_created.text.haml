@@ -2,7 +2,7 @@ New Job Created:
 = "\t " + @job.name
 
 Job URL: 
-= "\t " + job_url(@job)
+= "\t " + "http://ippf.rcg.montana/edu/%s" % @job.id
 
 Job Type: 
 = "\t " + @job.job_type.to_s
@@ -18,7 +18,7 @@ Status:
 
 Job Files: 
 - @job.job_files.each do |jf| 
-  = "\t -" + jf.name
+  = "\t " + jf.name
 
 Job Notes:
 = "\t " + @job.notes

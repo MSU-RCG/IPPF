@@ -7,7 +7,7 @@
     
     %dl
       %dt Job URL: 
-      %dd= job_url(@job)
+      %dd= "http://ippf.rcg.montana/edu/%s" % @job.id
 
       %dt Job Type: 
       %dd= @job.job_type
