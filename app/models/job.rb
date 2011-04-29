@@ -5,10 +5,10 @@ class Job
   property :id,           Serial
   property :name,         String,                   :required => true
   property :job_type,     Enum[:shape, :transect]
-  property :x_min,        Float,                    :required => true
-  property :x_max,        Float,                    :required => true
-  property :y_min,        Float,                    :required => true
-  property :y_max,        Float,                    :required => true
+  property :x_min,        Float,                    :required => true, :default => 32.5
+  property :x_max,        Float,                    :required => true, :default => 32.6
+  property :y_min,        Float,                    :required => true, :default => -123
+  property :y_max,        Float,                    :required => true, :default => -122.9
   property :status,       Enum[:new, :pending, :complete], :default => :new
   property :notes,        Text
   property :uuid,         UUID, :default => lambda { UUIDTools::UUID.timestamp_create }
