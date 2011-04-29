@@ -5,7 +5,7 @@ Job URL:
 = "\t " + job_url(@job)
 
 Job Type: 
-= "\t " + @job.job_type 
+= "\t " + @job.job_type.to_s
 
 Creator: 
 = "\t " + @job.user.email
@@ -14,7 +14,7 @@ Coordinates:
 = "\t " + @job.coordinates
 
 Status: 
-= "\t " + @job.status
+= "\t " + @job.status.to_s
 
 Job Files: 
 - @job.job_files.each do |jf| 
