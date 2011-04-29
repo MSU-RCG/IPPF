@@ -4,7 +4,7 @@ Job Complete:
 This job is complete.  Please go to the job URL below to access the completed files.
 
 Job URL: 
-= "\t " + job_url(@job)
+= "\t " + "http://ippf.rcg.montana.edu/jobs/%s" % @job.id
 
 Job Type: 
 = "\t " + @job.job_type.to_s
