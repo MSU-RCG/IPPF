@@ -1,0 +1,31 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=iso-8859-1", "http-equiv" => "Content-Type"}/
+  %body
+    %h1 Job Complete: #{@job.name}
+    %p This job is complete.  Please go to the job URL below to access the completed files
+    %dl
+      %dt Job URL: 
+      %dd= link_to job_url(@job)
+
+      %dt Job Type: 
+      %dd= @job.job_type
+
+      %dt Creator:
+      %dd= @job.user.email
+
+      %dt Coordinates:
+      %dd= @job.coordinates
+    
+      %dt Status:
+      %dd= @job.status
+
+      %dt Job Files:
+      %dd
+        %ul
+          - @job.job_files.each do |jf| 
+            %li= jf.name
+
+      %dt Job Notes:
+      %dd= @job.notes

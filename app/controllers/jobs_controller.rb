@@ -69,8 +69,10 @@ class JobsController < ApplicationController
   def update
     @job = Job.get(params[:id])
 
+
     respond_to do |format|
       if @job.update(params[:job])
+        JobMailer.job_complete(@job).deliver if @job.status == :complete
         format.html { redirect_to(@job, :notice => 'Job was successfully updated.') }
         format.xml  { head :ok }
       else

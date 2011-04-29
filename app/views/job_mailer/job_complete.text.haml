@@ -1,0 +1,26 @@
+Job Complete: 
+= "\t " + @job.name
+
+This job is complete.  Please go to the job URL below to access the completed files.
+
+Job URL: 
+= "\t " + job_url(@job)
+
+Job Type: 
+= "\t " + @job.job_type 
+
+Creator: 
+= "\t " + @job.user.email
+
+Coordinates: 
+= "\t " + @job.coordinates
+
+Status: 
+= "\t " + @job.status
+
+Job Files: 
+- @job.job_files.each do |jf| 
+  = "\t -" + jf.name
+
+Job Notes:
+= "\t " + @job.notes
