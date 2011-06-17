@@ -91,7 +91,7 @@ class UsersController < ApplicationController
       if @user.save
         format.json { render :json => @user.to_json, :status => 200 }
         format.xml  { head :ok }
-        format.html { redirect_to :action => :index }
+        format.html { redirect_to users_path, :notice => 'User was successfully created.' }
       else
         format.json { render :text => "Could not create user", :status => :unprocessable_entity } 
         format.xml  { head :ok }
