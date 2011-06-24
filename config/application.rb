@@ -6,6 +6,8 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env) if defined?(Bundler)
 
+require 'lib/us_state'
+
 module Ippf
   class Application < Rails::Application
     # Added by the Rails 3 jQuery Template
