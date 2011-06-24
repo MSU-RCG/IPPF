@@ -21,11 +21,12 @@ class JobsController < ApplicationController
   # GET /jobs/1
   # GET /jobs/1.xml
   def show
-    @job = Job.get(params[:id])
+    @job = Job.get(params[:id]) || Job.first(:uuid => params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @job }
+      format.json { render :json => @job}
     end
   end
 
