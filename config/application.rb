@@ -51,5 +51,6 @@ module Ippf
       g.template_engine :haml
     end
     
+    IPPF_VERSION = '0.1.0'
   end
 end
