@@ -56,6 +56,26 @@ class Job
     (@x_max.to_f - @x_min.to_f) * (@y_max.to_f - @y_min.to_f)
   end
   
+  def complete_files_exist?
+    !Dir.glob(complete_files_dir + '/*').empty?
+  end
+  
+  def complete_files_dir
+    Rails.public_path + self.job_files.first.file_url + '/complete'
+  end
+  
+  def new_job?
+    status == :new
+  end
+  
+  def pending_job?
+    status == :pending
+  end
+  
+  def complete_job?
+    status == :complete
+  end
+
   private
   
   def validate_coordinates

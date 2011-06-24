@@ -257,4 +257,30 @@ describe Job do
     end
   end
   
+  it "should respond to :complete_files_exist? with true when the complete folder is present" do
+    job = Factory(:job)
+    job.should respond_to(:complete_files_exist?)
+  end
+  
+  it "should respond to a :complete_files_dir with the directory for completed files" do
+    job = Factory(:job)
+    job.should respond_to(:complete_files_dir)
+    job.job_files.first.stub(:file_url).and_return('/uploads/6cf2fff2-5b5c-11e0-ada7-002332d6f1b2')
+    job.complete_files_dir.should == Rails.public_path + '/uploads/6cf2fff2-5b5c-11e0-ada7-002332d6f1b2' + '/complete' 
+  end
+  
+  it "should have convenient boolean accessors for the states" do
+    job = Factory(:job)
+    job.should respond_to(:new_job?)
+    job.status = :new
+    job.should be_new_job
+    
+    job.should respond_to(:pending_job?)
+    job.status = :pending
+    job.should be_pending_job
+    
+    job.should respond_to(:complete_job?)
+    job.status = :complete
+    job.should be_complete_job
+  end
 end
