@@ -10,8 +10,16 @@ class User
   before_save :ensure_authentication_token
 
 
-  property :id,    Serial
-  property :admin, Boolean
+  property :id,         Serial
+  property :admin,      Boolean
+  property :first_name, String, :required => true
+  property :last_name,  String, :required => true
+  property :agency,     String
+  property :job_title,  String
+  property :city,       String, :required => true
+  property :state,      String, :required => true
+  
+  validates_within :state, :set => UsState.abbreviations
   
   has n, :jobs
 

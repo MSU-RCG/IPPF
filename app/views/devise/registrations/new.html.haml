@@ -6,6 +6,26 @@
       %br/
       = f.email_field :email
     %p
+      = f.label :first_name
+      %br/
+      = f.text_field :first_name
+    %p
+      = f.label :last_name
+      %br/
+      = f.text_field :last_name
+    %p
+      = f.label 'Agency/Institution/Employer'
+      %br/
+      = f.text_field :agency
+    %p
+      = f.label :city
+      %br/
+      = f.text_field :city
+    %p
+      = f.label :state
+      %br/
+      = f.select :state, UsState::NAMES, :include_blank => "Select a State"    
+    %p
       = f.label :password
       %br/
       = f.password_field :password

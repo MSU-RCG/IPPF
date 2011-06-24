@@ -21,10 +21,15 @@ end
 # USER FACTORIES
 Factory.sequence :email do |n|
   "user#{n}@example.com"
-end
+end  
 
 Factory.define :user do |f|
   f.email { Factory.next(:email) }
+  f.first_name 'firstname'
+  f.last_name 'lastname'
+  f.agency 'agency/institution/employer'
+  f.city 'city'
+  f.state 'MT'
   f.password "password"
   f.password_confirmation "password"
 end

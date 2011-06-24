@@ -10,6 +10,21 @@
     = f.label :email
     = f.text_field :email
   .field
+    = f.label :first_name
+    = f.text_field :first_name
+  .field
+    = f.label :last_name
+    = f.text_field :last_name
+  .field
+    = f.label 'Agency/Institution/Employer'
+    = f.text_field :agency
+  .field
+    = f.label :city
+    = f.text_field :city
+  .field
+    = f.label :state
+    = f.select :state, UsState::NAMES, :include_blank => "Select a State"    
+  .field
     = f.label :admin
     = f.check_box :admin
   .field
