@@ -106,14 +106,14 @@ class UsersController < ApplicationController
   #-----------------------------------------------------------------
   def update
     @user = User.get(params[:id])
-  
+    
     respond_to do |format|
       if @user.update(params[:user])
         format.json { render :json => @user.to_json, :status => 200 }
         format.xml  { head :ok }
         format.html { redirect_to @user, :notice => 'User was successfully updated.' }
       else
-        format.json { render :text => "Could not create user", :status => :unprocessable_entity } 
+        format.json { render :text => "Could not update user", :status => :unprocessable_entity } 
         format.xml  { head :ok }
         format.html { render :action => :new, :status => :unprocessable_entity }
       end
