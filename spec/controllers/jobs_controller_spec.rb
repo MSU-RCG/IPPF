@@ -71,6 +71,10 @@ describe JobsController do
         mock_job.should_receive(:user=).with(@user)
         mock_job.should_receive(:job_files=).with([@jf])
         mock_job.should_not_receive(:status=)
+
+        mock_mail = mock(JobMailer, {:deliver => true})
+        JobMailer.should_receive(:job_created).with(mock_job).and_return(mock_mail)
+
         post :create, :job => {'these' => 'params'}
         assigns(:job).should be(mock_job)
       end
@@ -116,6 +120,16 @@ describe JobsController do
         Job.stub(:get) { mock_job(:update => true) }
         put :update, :id => "1"
         response.should redirect_to(job_url(mock_job))
+      end
+      
+      it "sends an email if it was completed" do
+        Job.stub(:get) { mock_job(:update => true) } 
+        
+        mock_job.should_receive(:status).and_return(:complete)
+        mock_mail = mock(JobMailer, {:deliver => true})
+        JobMailer.should_receive(:job_complete).with(mock_job).and_return(mock_mail)
+        
+        put :update, :id => "1"
       end
     end
 
