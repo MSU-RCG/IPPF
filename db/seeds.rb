@@ -8,4 +8,13 @@
 
 DataMapper.auto_migrate!
 
-User.create(:email => 'admin@ippf.rcg.montana.edu', :admin => true, :password => 'password', :password_confirmation => 'password')
+User.create(
+  :email                 => 'admin@ippf.rcg.montana.edu', 
+  :admin                 => true, 
+  :password              => 'password', 
+  :password_confirmation => 'password',
+  :first_name            => 'Sys',
+  :last_name             => 'Admin',
+  :city                  => 'Bozeman',
+  :state                 => 'MT'
+)
