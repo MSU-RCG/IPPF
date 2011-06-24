@@ -1,2 +1,28 @@
-Use this README file to introduce your application and point to useful places in the API for learning more.
-Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
+IPPF Readme
+
+Hola, welcome to the app.
+
+This app is quite simple, really, it just allows users to create jobs.
+Each job has one or more files associated with it that are used by a 
+computational server for processing. 
+
+There is a rake task that should be run by cron periodically to update
+the jobs from new to pending or complete based on the filesystem.  All 
+files start off as new, but then the job will update them periodically.
+This could change to a background watcher, but cron is good enough for
+now.
+
+Emails are sent off when jobs are created and then when they are 
+complete.  At that point, a link is exposed to allow the user to 
+download the complete files.
+
+Simple!
+
+The app is fully unit-tested (with a reasonable amount of controller 
+testing), and there are cucumber features, but they aren't tested, I
+had issues with that.  They were really brittle too.  No me gusta. But
+the cucumber tests were great for communication with the client.  The 
+spec tests are the best way to get to know the app functionality.
+
+-pol
+pol.llovet@gmail.com
