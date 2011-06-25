@@ -25,6 +25,13 @@
           %li
             %a{:href => jf.file_url}= jf.name
   %tr{:class => cycle('zebra','')}
+    %td.property Complete Files:
+    %td
+      %ul
+        - @job.complete_files.each do |cf|
+          %li
+            %a{:href => cf}= File.basename(cf)
+  %tr{:class => cycle('zebra','')}
     %td.property Notes:
     %td= @job.notes
 
