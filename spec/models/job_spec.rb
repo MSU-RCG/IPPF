@@ -283,4 +283,18 @@ describe Job do
     job.status = :complete
     job.should be_complete_job
   end
+  
+  it "should send out a mail after creation" do
+    Job.should_receive(:send_create_notification)
+    JobMailer.should_receive(:job_created)
+    job = Factory(:job)
+  end
+
+  it "should send out a mail after updated to complete" do
+    JobMailer.should_receive(:job_complete)
+    job = Factory(:job)
+    job.status = :complete
+    job.save
+  end
+
 end

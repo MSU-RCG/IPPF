@@ -36,6 +36,10 @@ class Job
     end
   end
   
+  # Hooks
+  after :create, :send_create_notification
+  after :update, :send_complete_notification
+  
   # Accessor for the valid job_types
   def self.job_types
     Job.properties[:job_type].class.flags
@@ -61,7 +65,17 @@ class Job
   end
   
   def complete_files_dir
-    Rails.public_path + self.job_files.first.file_url + '/complete'
+    Rails.public_path + File.dirname(self.job_files.first.file_url) + '/complete'
+  end
+  
+  def complete_files
+    files = []
+    if complete_files_exist?
+      Dir.glob(complete_files_dir + '/*').each do |f|
+        files << f.gsub(Rails.root.to_s + '/public', '')
+      end
+    end
+    files
   end
   
   def new_job?
@@ -85,5 +99,14 @@ class Job
       [false, "One of the max coordinates is less than its corresponding min corrdinate."]
     end
   end
+
+  def send_create_notification
+    JobMailer.job_created(self)
+  end
+  
+  def send_complete_notification
+    JobMailer.job_complete(self) if complete_job?
+  end
+
   
 end
