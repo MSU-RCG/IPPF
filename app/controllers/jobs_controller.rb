@@ -50,11 +50,11 @@ class JobsController < ApplicationController
   # POST /jobs.xml
   def create
     @job = Job.new(params[:job])
+    @job.job_files = JobFile.all(:job_uuid => @job.uuid)
     @job.user = current_user
     
     respond_to do |format|
       if @job.save
-        JobMailer.job_created(@job).deliver
         format.html { redirect_to(jobs_url, :notice => 'Job was successfully created.') }
         format.xml  { render :xml => @job, :status => :created, :location => @job }
       else
@@ -68,7 +68,6 @@ class JobsController < ApplicationController
   # PUT /jobs/1.xml
   def update
     @job = Job.get(params[:id])
-
 
     respond_to do |format|
       if @job.update(params[:job])
