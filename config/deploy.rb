@@ -41,6 +41,11 @@ namespace :rake do
   task :db_seed do
     run "cd #{current_path}; rake db:seed RAILS_ENV=#{rails_env}"
   end
+  
+  desc "Upgrade the database schema"
+  task :db_autoupgrade do
+    run "cd #{current_path}; rake db:autoupgrade RAILS_ENV=#{rails_env}"
+  end
 end
 
 # Symlinks to be made after deployment
@@ -58,3 +63,4 @@ task :setup_symlinks do
   end
 end
 after "deploy:update_code", :setup_symlinks
+
