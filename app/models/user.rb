@@ -12,12 +12,12 @@ class User
 
   property :id,         Serial
   property :admin,      Boolean
-  property :first_name, String, :required => true
-  property :last_name,  String, :required => true
+  property :first_name, String, :required => true, :default => ''
+  property :last_name,  String, :required => true, :default => ''
   property :agency,     String
   property :job_title,  String
-  property :city,       String, :required => true
-  property :state,      String, :required => true
+  property :city,       String, :required => true, :default => ''
+  property :state,      String, :required => true, :default => ''
   
   validates_within :state, :set => UsState.abbreviations
   
