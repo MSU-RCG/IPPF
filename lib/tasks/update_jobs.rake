@@ -23,6 +23,6 @@ namespace :jobs do
         results[2] += 1
       end
     end
-    STDOUT.puts "%d non-complete jobs checked; %d marked pending; %d marked complete" % results
+    STDOUT.puts "#{Time.now} :: %d non-complete jobs checked; %d marked pending; %d marked complete" % results
   end
 end
