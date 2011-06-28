@@ -7,3 +7,4 @@ config/database.yml
 public/stylesheets/compiled/*
 config/secrets.rb
 public/uploads/*
+spec/test_files/*
