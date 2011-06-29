@@ -6,10 +6,9 @@ Factory.define :job do |f|
   f.x_max       -100
   f.y_min       40
   f.y_max       40.1
-  f.status      'pending'
   f.notes       "Here are some notes for the Job"
   f.association :user
-  f.after_create { |f| Factory(:job_file, :job => f) }
+  f.after_build { |f| Factory(:job_file, :job => f) }
 end
 
 # JOBFILE FACTORY

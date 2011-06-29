@@ -4,7 +4,7 @@ class Job
   # Properties
   property :id,           Serial
   property :name,         String,                   :required => true
-  property :job_type,     Enum[:shape, :transect]
+  property :job_type,     Enum[:shape, :transect],  :required => true, :default => :shape
   property :x_min,        Float,                    :required => true, :default => -123
   property :x_max,        Float,                    :required => true, :default => -122.9
   property :y_min,        Float,                    :required => true, :default => 32.5
@@ -27,6 +27,8 @@ class Job
   validates_numericality_of :y_max, :lte => 49, :gte => 32.5
   validates_numericality_of :x_min, :lte => -96, :gte => -123
   validates_numericality_of :x_max, :lte => -96, :gte => -123
+  validates_within :job_type, :set => Job.properties[:job_type].class.flags
+  validates_within :status,   :set => Job.properties[:status].class.flags
   validates_with_method :validate_coordinates
   validates_with_block do 
     if (coordinate_area < 0.25) 
@@ -79,19 +81,27 @@ class Job
   end
   
   def new_job?
-    status == :new
+    @status == :new
   end
   
   def pending_job?
-    status == :pending
+    @status == :pending
   end
   
   def complete_job?
-    status == :complete
+    @status == :complete
   end
 
   private
   
+  def send_create_notification
+    JobMailer.job_created(self) if new_job?
+  end
+  
+  def send_complete_notification
+    JobMailer.job_complete(self) if complete_job?
+  end
+
   def validate_coordinates
     if (@y_max.to_f > @y_min.to_f) && (@x_max.to_f > @x_min.to_f)
       true
@@ -100,13 +110,4 @@ class Job
     end
   end
 
-  def send_create_notification
-    JobMailer.job_created(self)
-  end
-  
-  def send_complete_notification
-    JobMailer.job_complete(self) if complete_job?
-  end
-
-  
 end

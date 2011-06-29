@@ -11,6 +11,12 @@ describe Job do
     job = Factory(:job)
     job.should be_valid
   end
+
+  it "Should save a valid job successfully" do
+    initial = Job.count
+    Factory(:job)
+    Job.count.should == initial+1
+  end
   
   it "Should belong to a user" do
     job = Factory(:job)
@@ -62,10 +68,12 @@ describe Job do
   
   it "should be invalid if the status is not 'new','pending' or 'complete'" do
     [:foo, :' ', :squid].each do |j|
-      job = Factory.build(:job, :status => j)
+      job = Factory.build(:job)
+      job.status = j
       job.should_not be_valid
       job.errors.on(:status).should_not be_empty
     end
+    
     [:pending, :complete, :new].each do |j|
       job = Factory(:job, :status => j)
       job.status.should == j
@@ -265,7 +273,8 @@ describe Job do
   it "should respond to a :complete_files_dir with the directory for completed files" do
     job = Factory(:job)
     job.should respond_to(:complete_files_dir)
-    job.job_files.first.stub(:file_url).and_return('/uploads/6cf2fff2-5b5c-11e0-ada7-002332d6f1b2')
+    job.job_files.first.stub(:file_url).and_return('/uploads/6cf2fff2-5b5c-11e0-ada7-002332d6f1b2/foo.txt')
+    job.job_files.first.file_url.should == '/uploads/6cf2fff2-5b5c-11e0-ada7-002332d6f1b2/foo.txt'
     job.complete_files_dir.should == Rails.public_path + '/uploads/6cf2fff2-5b5c-11e0-ada7-002332d6f1b2' + '/complete' 
   end
   
@@ -285,9 +294,12 @@ describe Job do
   end
   
   it "should send out a mail after creation" do
+    job = Factory.new(:job)
+    job.should be_new
+    job.should be_valid
+    job.save
     Job.should_receive(:send_create_notification)
-    JobMailer.should_receive(:job_created)
-    job = Factory(:job)
+    JobMailer.should_receive(:job_created).with(job)
   end
 
   it "should send out a mail after updated to complete" do
