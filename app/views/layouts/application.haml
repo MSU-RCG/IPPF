@@ -153,7 +153,7 @@
             / #topimage
             /  %img{:alt => "College Office", :height => "180px", :src => "images/example.jpg", :width => "268"}/
             / EDIT HERE
-            #version v#{Ippf::Application::IPPF_VERSION}
+            #version= link_to "v#{Ippf::Application::IPPF_VERSION}", changelog_url
             = yield
             = yield :scripts
             / BEGIN BRANDED CONTENT DO NOT EDIT

@@ -21,6 +21,7 @@ Ippf::Application.routes.draw do
 
   # match 'cancel_job/:uuid' => 'job_files#cancel', :as => :cancel_job
   match 'job_files/:uuid', :to => 'job_files#create', :as => :create_job_file, :via => :post
+  match 'changelog', :to => 'changelog#index'
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
