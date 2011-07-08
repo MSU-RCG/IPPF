@@ -13,7 +13,9 @@
     %td= @job.user.email
   %tr{:class => cycle('zebra','')}
     %td.property Coordinates:
-    %td= @job.coordinates
+    %td
+      = @job.coordinates
+      = link_to 'rewrite coords.txt file', generate_coords_txt_job_url, :remote => true, :class => 'remote link button', :id => 'generate_coords', :method => :post
   %tr{:class => cycle('zebra','')}
     %td.property Status:
     %td= @job.status

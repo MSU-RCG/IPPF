@@ -149,4 +149,13 @@ describe JobsController do
       response.should redirect_to(jobs_url)
     end
   end
+  
+  describe "POST generate_coords_txt" do
+    it "regenerates the coords.txt file" do
+      Job.stub(:get).with("37") { mock_job }
+      mock_job.should_receive(:generate_coords_txt)
+      post :generate_coords_txt, :id => "37"
+    end
+  end
+  
 end

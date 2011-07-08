@@ -1,5 +1,9 @@
 Ippf::Application.routes.draw do
-  resources :jobs
+  resources :jobs do
+    member do
+      post 'generate_coords_txt'
+    end
+  end
   devise_for :users
   resources :users
 

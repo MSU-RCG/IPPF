@@ -31,5 +31,8 @@ describe JobsController do
       { :delete => "/jobs/1" }.should route_to(:controller => "jobs", :action => "destroy", :id => "1")
     end
 
+    it "recognizes and generates #generate_coords_txt" do
+      { :post => "/jobs/1/generate_coords_txt" }.should route_to(:controller => "jobs", :action => "generate_coords_txt", :id => "1")
+    end
   end
 end

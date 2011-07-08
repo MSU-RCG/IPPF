@@ -92,4 +92,14 @@ class JobsController < ApplicationController
     end
   end
   
+  # POST /jobs/1/generate_coords_txt
+  def generate_coords_txt
+    @job = Job.get(params[:id])
+    @job.generate_coords_txt
+    
+    respond_to do |format|
+      format.xml { head :ok }
+    end
+  end
+    
 end

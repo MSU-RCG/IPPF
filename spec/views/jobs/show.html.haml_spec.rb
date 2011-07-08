@@ -8,7 +8,11 @@ describe "jobs/show.html.haml" do
       :user => assign(:user, stub_model(User, :email => 'foo@bat.com')),
       :coordinates => "Coordinates",
       :status => "Status",
-      :notes => "MyText"
+      :notes => "MyText",
+      :job_files => [
+        stub_model(JobFile, :file_url => 'foo.zip'),
+        stub_model(JobFile, :file_url => 'bar.zip')
+        ]
     ))
   end
 
