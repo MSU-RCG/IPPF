@@ -40,6 +40,7 @@ class Job
   
   # Hooks
   after :create, :send_create_notification
+  after :create, :create_coords_file
   after :update, :send_complete_notification
   
   # Accessor for the valid job_types
@@ -70,6 +71,10 @@ class Job
     Rails.public_path + File.dirname(self.job_files.first.file_url) + '/complete'
   end
   
+  def coords_file_path
+    Rails.public_path + "/uploads/#{@uuid}/coords.txt"
+  end
+  
   def complete_files
     files = []
     if complete_files_exist?
@@ -91,6 +96,19 @@ class Job
   def complete_job?
     @status == :complete
   end
+
+  
+  def create_coords_file
+    File.open(coords_file_path, 'w+') do |f|
+      f.write <<-EOF.gsub(/^ {6}/,'')
+      x_min = #{x_min}
+      x_max = #{x_max}
+      y_min = #{y_min}
+      y_max = #{y_max}
+      EOF
+    end
+  end
+  alias :generate_coords_txt :create_coords_file 
 
   private
   

@@ -308,5 +308,18 @@ describe Job do
     job.status = :complete
     job.save
   end
+  
+  it "should create a coords.txt file when a job is created" do    
+    job = Factory.build(:job)
+    job.stub(:coords_file_path).and_return(Rails.root.to_s + 'spec/test_files/coords.txt')
+    File.exists?(job.coords_file_path).should be_false
+    job.save
+    File.exists?(job.coords_file_path).should be_true
+  end
+  
+  it "should respond to #generate_coords_txt" do
+    job = Factory(:job)
+    job.should respond_to(:generate_coords_txt)
+  end
 
 end
