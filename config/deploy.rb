@@ -10,9 +10,9 @@ set :scm, :git
 server "ippf.rcg.montana.edu", :web, :app, :db
 
 # Use RVM
-$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 require "rvm/capistrano"
 set :rvm_ruby_string, 'ruby-1.8.7-p302@ippf'
+set :rvm_type, :system
 
 # Default deployment to development, special case for production
 set :deploy_to, "/home/#{application}/rails-dev"

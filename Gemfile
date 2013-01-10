@@ -57,6 +57,7 @@ group :development do
   gem 'ruby-debug'
   # Deployment
   gem 'capistrano'
+  gem 'rvm-capistrano'
   # Metrics
   #   rails g rails_metrics Metric
   #   rake db:automigrate
