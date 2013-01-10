@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 # Explicit Versions
-RAILS_VERSION     = '~> 3.0.4'
+RAILS_VERSION     = '~> 3.0.19'
 DM_VERSION        = '~> 1.1.0'
 RSPEC_VERSION     = '~> 2.5.0'
 CUKER_VERSION     = '~> 0.3.2'
@@ -49,6 +49,8 @@ gem 'uuidtools'
 # gem 'nokogiri'
 
 group :development do
+  # Dev DB
+  gem 'sqlite3'
   # Dev Webserver
   gem 'passenger'
   # Debugger
